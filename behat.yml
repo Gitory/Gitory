@@ -1,0 +1,8 @@
+default:
+    suites:
+        api:
+            contexts:
+                - DomainContext
+                - ApiContext
+            filters:
+                role: api client
