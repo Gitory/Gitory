@@ -17,7 +17,10 @@
     ],
     "require":
     {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "doctrine/orm": "~2.4",
+        "silex/silex": "~1.2",
+        "dflydev/doctrine-orm-service-provider": "~1.0"
     },
     "require-dev":
     {
@@ -26,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Gitory\\Gitory\\": "src"
+            "Gitory\\Gitory\\": "src/"
         }
     }
 }
