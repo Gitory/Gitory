@@ -6,7 +6,7 @@ use Gitory\Gitory\Application;
 
 $app = new Application([
     'debug' => true,
-    'privateDirectoryPath' => __DIR__.'/../../private/'
+    'privateDirectoryPath' => __DIR__.'/../../private/test/'
 ]);
 
 $app->run();
