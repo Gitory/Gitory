@@ -1,0 +1,10 @@
+default:
+    suites:
+        api:
+            contexts:
+                - DomainContext
+                - ApiContext:
+                    - localhost
+                    - 2025
+            filters:
+                role: api client
