@@ -86,24 +86,21 @@ class ApiContext implements SnippetAcceptingContext
      *
      * @When I make a :method request to :url
      */
-    public function iMakeARequestTo($method, $url)
+    public function iMakeARequestTo($method, $url, PyStringNode $body = null)
     {
         $client = new Client();
-        $this->response = $client->$method($this->baseUrl.$url);
+        $client->setDefaultOption('exceptions', false);
+        $this->response = $client->$method($this->baseUrl.$url, ['body' => (string)$body]);
     }
 
     /**
-     * Checks the response JSON
+     * Check the response JSON
      * @Then the response should be
      */
     public function theResponseShouldBe(PyStringNode $response)
     {
-        $dbResponse = json_decode($this->response->getBody(), true);
+        $dbResponse = $this->response->json();
         $behatResponseTemplate = json_decode((string)$response, true);
-
-        if($dbResponse === null) {
-            throw new Exception("Cannot decode database response : ".$this->response->getBody());
-        }
 
         if($behatResponseTemplate === null) {
             throw new Exception("Cannot decode behat template response : ".(string)$response);
@@ -118,6 +115,17 @@ class ApiContext implements SnippetAcceptingContext
         $stringDiff = $diff->render($renderer);
         if($stringDiff !== "") {
             throw new Exception('Response does not match: '. PHP_EOL . $stringDiff);
+        }
+    }
+
+    /**
+     * Check the response status code
+     * @Then the response status code should be :code
+     */
+    public function theResponseStatusCodeShouldBe($code)
+    {
+        if($this->response->getStatusCode() !== $code) {
+            throw new Exception('Response code : '.$this->response->getStatusCode().' does not match '.$code);
         }
     }
 

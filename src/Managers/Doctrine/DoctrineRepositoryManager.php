@@ -3,7 +3,10 @@
 namespace Gitory\Gitory\Managers\Doctrine;
 
 use Gitory\Gitory\Managers\RepositoryManager;
+use Gitory\Gitory\Entities\Repository;
+use Gitory\Gitory\Exceptions\ExistingRepositoryIdentifierException;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Common\Persistence\ObjectRepository;
 
 class DoctrineRepositoryManager implements RepositoryManager
 {
@@ -31,7 +34,26 @@ class DoctrineRepositoryManager implements RepositoryManager
      */
     public function findAll()
     {
-        return $this->getManager()->getRepository(self::ENTITY_CLASS)->findAll();
+        return $this->getRepository()->findAll();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function save(Repository $repository)
+    {
+        $identifier = $repository->identifier();
+        $existingRepository = $this->getRepository()->findOneBy(['identifier' => $identifier]);
+
+        if($existingRepository !== null) {
+            throw new  ExistingRepositoryIdentifierException('A repository with identifier '.$identifier.' already exists.');
+        }
+
+        $manager = $this->getManager();
+        $manager->persist($repository);
+        $manager->flush();
+
+        return $repository;
     }
 
     /**
@@ -41,5 +63,14 @@ class DoctrineRepositoryManager implements RepositoryManager
     private function getManager()
     {
         return $this->registry->getManagerForClass(DoctrineRepositoryManager::ENTITY_CLASS);
+    }
+
+    /**
+     * Get doctrine repository
+     * @return Doctrine\Common\Persistence\ObjectRepository
+     */
+    private function getRepository()
+    {
+        return $this->getManager()->getRepository(self::ENTITY_CLASS);
     }
 }
