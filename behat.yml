@@ -3,8 +3,6 @@ default:
         api:
             contexts:
                 - DomainContext
-                - ApiContext:
-                    - localhost
-                    - 2025
+                - ApiContext
             filters:
                 role: api client
