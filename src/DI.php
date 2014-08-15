@@ -8,7 +8,7 @@ use Silex\Provider\DoctrineServiceProvider;
 use Silex\ServiceProviderInterface;
 use Gitory\Gitory\Managers\Doctrine\DoctrineRepositoryManager;
 
-trait Bootstrap
+trait DI
 {
     /**
      * Initialize services for dependency injection
@@ -42,7 +42,7 @@ trait Bootstrap
             return new ManagerRegistry($container);
         };
 
-        $this['RepositoryManager'] = function ($c) {
+        $this['repository.manager'] = function ($c) {
             return new DoctrineRepositoryManager($c['doctrine']);
         };
     }
