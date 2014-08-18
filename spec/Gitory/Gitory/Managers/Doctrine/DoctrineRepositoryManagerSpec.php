@@ -2,15 +2,13 @@
 
 namespace spec\Gitory\Gitory\Managers\Doctrine;
 
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-
 use Gitory\Gitory\Entities\Repository;
 use Gitory\Gitory\Managers\Doctrine\DoctrineRepositoryManager;
 use Gitory\Gitory\Exceptions\ExistingRepositoryIdentifierException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectRepository;
+use PhpSpec\ObjectBehavior;
 
 class DoctrineRepositoryManagerSpec extends ObjectBehavior
 {

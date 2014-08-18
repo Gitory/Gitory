@@ -23,22 +23,16 @@ class ApiContext implements SnippetAcceptingContext
     private $baseUrl;
 
     /**
-     * API Server port
-     * @var integer
-     */
-    private $port;
-
-    /**
      * API Server address
      * @var string
      */
-    private $address;
+    const ADDRESS = 'localhost:2025';
 
     /**
      * PHP Server process
      * @var Symfony\Component\Process\Process
      */
-    private $phpProcess;
+    private static $phpProcess;
 
     /**
      * Last response
@@ -46,24 +40,30 @@ class ApiContext implements SnippetAcceptingContext
      */
     private $response;
 
-    private function startServer()
+    /**
+     * @BeforeSuite
+     */
+    public static function startServer()
     {
         $finder = new PhpExecutableFinder;
         $php = $finder->find();
 
-        $builder = new ProcessBuilder(['exec', $php, '-S', $this->address.':'.$this->port, __DIR__.'/../../web/api/index-test.php']);
+        $builder = new ProcessBuilder(['exec', $php, '-S', self::ADDRESS, __DIR__.'/../../web/api/index-test.php']);
         $builder->inheritEnvironmentVariables(true);
 
-        $this->phpProcess = $builder->getProcess();
-        $this->phpProcess->setTty(true);
-        $this->phpProcess->start();
+        self::$phpProcess = $builder->getProcess();
+        self::$phpProcess->setTty(true);
+        self::$phpProcess->start();
 
         sleep(2);
     }
 
-    private function stopServer()
+    /**
+     * @AfterSuite
+     */
+    public static function stopServer()
     {
-        $this->phpProcess->stop();
+        self::$phpProcess->stop();
     }
 
     /**
@@ -72,13 +72,9 @@ class ApiContext implements SnippetAcceptingContext
      * Every scenario gets its own context object.
      * You can also pass arbitrary arguments to the context constructor through behat.yml.
      */
-    public function __construct($address, $port)
+    public function __construct()
     {
-        $this->address = $address;
-        $this->port = $port;
-        $this->baseUrl = 'http://'.$address.':'.$port;
-
-        $this->startServer();
+        $this->baseUrl = 'http://'.self::ADDRESS;
     }
 
     /**
@@ -127,10 +123,5 @@ class ApiContext implements SnippetAcceptingContext
         if($this->response->getStatusCode() !== $code) {
             throw new Exception('Response code : '.$this->response->getStatusCode().' does not match '.$code);
         }
-    }
-
-    public function __destruct()
-    {
-        $this->stopServer();
     }
 }
