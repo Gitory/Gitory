@@ -38,6 +38,16 @@ class DoctrineRepositoryManager implements RepositoryManager
     }
 
     /**
+     * Find a repository by identifier
+     * @param  integer $identifier
+     * @return Gitory\Gitory\Entities\Repository
+     */
+    public function findByIdentifier($identifier)
+    {
+        return $this->getRepository()->findOneBy(['identifier' => $identifier]);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function save(Repository $repository)

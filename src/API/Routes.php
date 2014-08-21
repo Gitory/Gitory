@@ -1,6 +1,6 @@
 <?php
 
-namespace Gitory\Gitory;
+namespace Gitory\Gitory\API;
 
 use Silex\ServiceProviderInterface;
 use Silex\Provider\ServiceControllerServiceProvider;

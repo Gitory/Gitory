@@ -1,6 +1,6 @@
 <?php
 
-namespace Gitory\Gitory;
+namespace Gitory\Gitory\API;
 
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry;
@@ -30,7 +30,7 @@ trait DI
                     array(
                         "type" => "annotation",
                         "namespace" => "Gitory\Gitory\Entities",
-                        "path" => __DIR__.'/Entities',
+                        "path" => __DIR__.'/../Entities',
                     ),
                 ),
             ),
