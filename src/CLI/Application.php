@@ -2,19 +2,16 @@
 
 namespace Gitory\Gitory\CLI;
 
-use Cilex\Application as CilexApplication;
+use Symfony\Component\Console\Application as ConsoleApplication;
+use Gitory\Gitory\Application as GitoryApplication;
 
-class Application extends CilexApplication
+class Application extends ConsoleApplication
 {
-    use DI, Commands;
 
-    public function __construct(array $values = array())
+    public function __construct(GitoryApplication $gitoryApp)
     {
         parent::__construct('gitory', 'dev');
 
-        $this['repositories.directory-path'] = 'private/test/repositories/';
-
-        $this->initDI($values);
-        $this->initCommands();
+        $this->addCommands($gitoryApp['command.resolver']->commands());
     }
 }

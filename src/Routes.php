@@ -1,8 +1,8 @@
 <?php
 
-namespace Gitory\Gitory\API;
+namespace Gitory\Gitory;
 
-use Silex\ServiceProviderInterface;
+use Pimple\ServiceProviderInterface;
 use Silex\Provider\ServiceControllerServiceProvider;
 
 trait Routes

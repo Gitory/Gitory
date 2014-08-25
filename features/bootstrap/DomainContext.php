@@ -7,7 +7,7 @@ use Behat\Gherkin\Node\TableNode;
 
 use Doctrine\ORM\Tools\SchemaTool;
 
-use Gitory\Gitory\API\Application;
+use Gitory\Gitory\Application;
 use Gitory\Gitory\Entities\Repository;
 
 /**
