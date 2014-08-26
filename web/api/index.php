@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
-use Gitory\Gitory\API\Application;
+use Gitory\Gitory\Application;
 
 $app = new Application([
     'debug' => true,

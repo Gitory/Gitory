@@ -1,9 +1,9 @@
 <?php
 
-namespace Gitory\Gitory\API;
+namespace Gitory\Gitory;
 
 use Gitory\Gitory\Controllers\RepositoryController;
-use Pimple as Container;
+use Pimple\Container;
 
 trait Controllers
 {

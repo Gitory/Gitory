@@ -1,12 +1,15 @@
+#!/usr/bin/env php
 <?php
 
 require_once __DIR__.'/../vendor/autoload.php';
 
 use Gitory\Gitory\CLI\Application;
+use Gitory\Gitory\Application as GitoryApplication;
 
-$app = new Application([
+$gitoryApp = new GitoryApplication([
     'debug' => true,
     'privateDirectoryPath' => __DIR__.'/../private/test/'
 ]);
 
+$app = new Application($gitoryApp);
 $app->run();

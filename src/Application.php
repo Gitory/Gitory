@@ -1,12 +1,12 @@
 <?php
 
-namespace Gitory\Gitory\API;
+namespace Gitory\Gitory;
 
 use Silex\Application as SilexApplication;
 
 class Application extends SilexApplication
 {
-    use DI, Controllers, Routes;
+    use DI, Controllers, Routes, Commands;
 
     public function __construct(array $values = array())
     {
@@ -17,5 +17,7 @@ class Application extends SilexApplication
         $this->initControllers();
 
         $this->initRoutes();
+
+        $this->initCommands();
     }
 }

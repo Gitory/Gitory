@@ -1,12 +1,14 @@
 <?php
 
-namespace Gitory\Gitory\API;
+namespace Gitory\Gitory;
 
-use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Saxulum\DoctrineOrmManagerRegistry\Doctrine\ManagerRegistry;
 use Silex\Provider\DoctrineServiceProvider;
-use Silex\ServiceProviderInterface;
+use Pimple\ServiceProviderInterface;
 use Gitory\Gitory\Managers\Doctrine\DoctrineRepositoryManager;
+use Gitory\Gitory\GitElephantGitHosting;
+use Gitory\PimpleCli\ServiceCommandServiceProvider;
 
 trait DI
 {
@@ -30,11 +32,13 @@ trait DI
                     array(
                         "type" => "annotation",
                         "namespace" => "Gitory\Gitory\Entities",
-                        "path" => __DIR__.'/../Entities',
+                        "path" => __DIR__.'/Entities',
                     ),
                 ),
             ),
         ));
+
+        $this->register(new ServiceCommandServiceProvider());
 
         $this['debug'] = $values['debug'];
 
@@ -45,6 +49,12 @@ trait DI
         $this['repository.manager'] = function ($c) {
             return new DoctrineRepositoryManager($c['doctrine']);
         };
+
+        $this['repository.hosting'] = function () {
+            return new GitElephantGitHosting($this['repositories.directory-path']);
+        };
+
+        $this['repositories.directory-path'] = 'private/test/repositories/';
     }
 
     abstract public function register(ServiceProviderInterface $provider, array $values = []);
