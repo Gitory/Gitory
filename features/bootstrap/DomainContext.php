@@ -7,7 +7,7 @@ use Behat\Gherkin\Node\TableNode;
 
 use Doctrine\ORM\Tools\SchemaTool;
 
-use Gitory\Gitory\Application;
+use Gitory\Gitory\API\Application;
 use Gitory\Gitory\Entities\Repository;
 
 /**
@@ -17,7 +17,7 @@ class DomainContext implements SnippetAcceptingContext
 {
     /**
      * Gitory application
-     * @var Gitory\Gitory\Application
+     * @var Gitory\Gitory\API\Application
      */
     private $app;
 

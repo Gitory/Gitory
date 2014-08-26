@@ -1,6 +1,6 @@
 <?php
 
-namespace Gitory\Gitory;
+namespace Gitory\Gitory\API;
 
 use Gitory\Gitory\Controllers\RepositoryController;
 use Pimple as Container;

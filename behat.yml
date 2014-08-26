@@ -6,3 +6,9 @@ default:
                 - ApiContext
             filters:
                 role: api client
+        cli:
+            contexts:
+                - DomainContext
+                - CliContext
+            filters:
+                role: cli client

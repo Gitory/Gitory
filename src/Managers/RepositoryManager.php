@@ -13,6 +13,13 @@ interface RepositoryManager
     public function findAll();
 
     /**
+     * Find a repository by his identifier
+     * @param  string $identifier
+     * @return Repository
+     */
+    public function findByIdentifier($identifier);
+
+    /**
      * Save a repository
      * @param  Repository $repository
      * @return Repository saved repository
