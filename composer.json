@@ -18,7 +18,7 @@
     "require":
     {
         "php": ">=5.4.0",
-        "doctrine/orm": "~2.4",
+	"doctrine/orm": "2.5.*@dev",
         "silex/silex": "~2.0@dev",
         "dflydev/doctrine-orm-service-provider": "dev-master@dev",
         "saxulum/saxulum-doctrine-orm-manager-registry-provider": "dev-master@dev",
@@ -41,5 +41,6 @@
         "psr-4": {
             "Gitory\\Gitory\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
