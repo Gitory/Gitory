@@ -1,0 +1,3 @@
+gitory:
+    private_path: %root_dir%/private/%env%/
+    repositories_path: %root_dir%/private/%env%/repositories/

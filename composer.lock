@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "469fdf224c109c65212d0887b72e397d",
+    "hash": "a8b59db7a595adca96da2f3990a864e2",
     "packages": [
         {
             "name": "cypresslab/gitelephant",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/matteosister/GitElephant.git",
-                "reference": "89f88e4bd4ec5975464940e7fdfded289a5a4312"
+                "reference": "2711e23c96e5b7b831cbfcf794866e685825f771"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matteosister/GitElephant/zipball/89f88e4bd4ec5975464940e7fdfded289a5a4312",
-                "reference": "89f88e4bd4ec5975464940e7fdfded289a5a4312",
+                "url": "https://api.github.com/repos/matteosister/GitElephant/zipball/2711e23c96e5b7b831cbfcf794866e685825f771",
+                "reference": "2711e23c96e5b7b831cbfcf794866e685825f771",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
             "keywords": [
                 "git"
             ],
-            "time": "2014-08-20 19:40:18"
+            "time": "2014-08-29 21:42:42"
         },
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -669,12 +669,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gitory/pimple-cli.git",
-                "reference": "54c008600ab5d203366faed21457bec7b070ca3c"
+                "reference": "4e22c02c4726dbad7754789bdf01b8f3d64ecf94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gitory/pimple-cli/zipball/54c008600ab5d203366faed21457bec7b070ca3c",
-                "reference": "54c008600ab5d203366faed21457bec7b070ca3c",
+                "url": "https://api.github.com/repos/Gitory/pimple-cli/zipball/4e22c02c4726dbad7754789bdf01b8f3d64ecf94",
+                "reference": "4e22c02c4726dbad7754789bdf01b8f3d64ecf94",
                 "shasum": ""
             },
             "require": {
@@ -704,7 +704,7 @@
                 }
             ],
             "description": "CLI commands for Pimple applications",
-            "time": "2014-08-26 16:02:47"
+            "time": "2014-08-28 07:47:33"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -957,12 +957,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex.git",
-                "reference": "0328d904085c4defa60bdc7e21e515841d59d356"
+                "reference": "5775fdb0be4338b1b9a57ba43af112d488d65bb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex/zipball/0328d904085c4defa60bdc7e21e515841d59d356",
-                "reference": "0328d904085c4defa60bdc7e21e515841d59d356",
+                "url": "https://api.github.com/repos/silexphp/Silex/zipball/5775fdb0be4338b1b9a57ba43af112d488d65bb6",
+                "reference": "5775fdb0be4338b1b9a57ba43af112d488d65bb6",
                 "shasum": ""
             },
             "require": {
@@ -1036,7 +1036,55 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2014-07-24 09:56:44"
+            "time": "2014-08-27 13:17:06"
+        },
+        {
+            "name": "symfony/config",
+            "version": "v2.5.3",
+            "target-dir": "Symfony/Component/Config",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Config.git",
+                "reference": "8d044668c7ccb4ade684e368d910e3aadcff6f6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/8d044668c7ccb4ade684e368d910e3aadcff6f6c",
+                "reference": "8d044668c7ccb4ade684e368d910e3aadcff6f6c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/filesystem": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Config\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Config Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-08-05 09:00:40"
         },
         {
             "name": "symfony/console",
@@ -1540,16 +1588,16 @@
     "packages-dev": [
         {
             "name": "behat/behat",
-            "version": "v3.0.12",
+            "version": "v3.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Behat.git",
-                "reference": "0fb9a9494a92374ddcc741374cef68c4cbf6fa05"
+                "reference": "349a6f8188a7d1ad01909d4cd4a73747cd74d09d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Behat/zipball/0fb9a9494a92374ddcc741374cef68c4cbf6fa05",
-                "reference": "0fb9a9494a92374ddcc741374cef68c4cbf6fa05",
+                "url": "https://api.github.com/repos/Behat/Behat/zipball/349a6f8188a7d1ad01909d4cd4a73747cd74d09d",
+                "reference": "349a6f8188a7d1ad01909d4cd4a73747cd74d09d",
                 "shasum": ""
             },
             "require": {
@@ -1617,7 +1665,7 @@
                 "symfony",
                 "testing"
             ],
-            "time": "2014-07-17 06:37:41"
+            "time": "2014-08-28 10:31:09"
         },
         {
             "name": "behat/gherkin",
@@ -1834,6 +1882,56 @@
                 "stream"
             ],
             "time": "2014-08-17 21:15:53"
+        },
+        {
+            "name": "php-vfs/php-vfs",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thornag/php-vfs.git",
+                "reference": "d0feda963fc440349b401158f148c6cdfc8aa857"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thornag/php-vfs/zipball/d0feda963fc440349b401158f148c6cdfc8aa857",
+                "reference": "d0feda963fc440349b401158f148c6cdfc8aa857",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "sami/sami": "*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "VirtualFileSystem": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Donat",
+                    "email": "michael.donat@me.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Virtual file system implementation for use with PHP unit testing.",
+            "homepage": "http://thornag.github.com/php-vfs",
+            "keywords": [
+                "filesystem",
+                "php",
+                "testing",
+                "unit",
+                "virtual"
+            ],
+            "time": "2014-05-12 09:12:30"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2100,54 +2198,6 @@
             "time": "2014-07-09 09:05:48"
         },
         {
-            "name": "symfony/config",
-            "version": "v2.5.3",
-            "target-dir": "Symfony/Component/Config",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/Config.git",
-                "reference": "8d044668c7ccb4ade684e368d910e3aadcff6f6c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/8d044668c7ccb4ade684e368d910e3aadcff6f6c",
-                "reference": "8d044668c7ccb4ade684e368d910e3aadcff6f6c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/filesystem": "~2.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.5-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\Config\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Symfony Config Component",
-            "homepage": "http://symfony.com",
-            "time": "2014-08-05 09:00:40"
-        },
-        {
             "name": "symfony/dependency-injection",
             "version": "v2.5.3",
             "target-dir": "Symfony/Component/DependencyInjection",
@@ -2307,9 +2357,7 @@
             "time": "2014-08-05 09:00:40"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "silex/silex": 20,
@@ -2322,7 +2370,5 @@
     "platform": {
         "php": ">=5.4.0"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
