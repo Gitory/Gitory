@@ -14,19 +14,19 @@ trait DI
 {
     /**
      * Initialize services for dependency injection
-     * @param  array $values config
+     * @param  array $config config
      */
-    private function initDI($values)
+    private function initDI($config)
     {
         $this->register(new DoctrineServiceProvider, array(
             "db.options" => array(
                 "driver" => "pdo_sqlite",
-                "path" => $values['privateDirectoryPath'].'gitory.db',
+                "path" => $config['private_path'].'gitory.db',
             ),
         ));
 
         $this->register(new DoctrineOrmServiceProvider, array(
-            "orm.proxies_dir" => $values['privateDirectoryPath'].'/doctrine/proxies/',
+            "orm.proxies_dir" => $config['private_path'].'doctrine/proxies/',
             "orm.em.options" => array(
                 "mappings" => array(
                     array(
@@ -40,8 +40,6 @@ trait DI
 
         $this->register(new ServiceCommandServiceProvider());
 
-        $this['debug'] = $values['debug'];
-
         $this['doctrine'] = function ($container) {
             return new ManagerRegistry($container);
         };
@@ -50,11 +48,9 @@ trait DI
             return new DoctrineRepositoryManager($c['doctrine']);
         };
 
-        $this['repository.hosting'] = function () {
-            return new GitElephantGitHosting($this['repositories.directory-path']);
+        $this['repository.hosting'] = function () use ($config) {
+            return new GitElephantGitHosting($config['repositories_path']);
         };
-
-        $this['repositories.directory-path'] = 'private/test/repositories/';
     }
 
     abstract public function register(ServiceProviderInterface $provider, array $values = []);

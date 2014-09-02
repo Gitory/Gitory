@@ -17,7 +17,7 @@ class DomainContext implements SnippetAcceptingContext
 {
     /**
      * Gitory application
-     * @var Gitory\Gitory\API\Application
+     * @var Gitory\Gitory\Application
      */
     private $app;
 
@@ -35,10 +35,7 @@ class DomainContext implements SnippetAcceptingContext
      */
     public function __construct()
     {
-        $this->app = new Application([
-            'debug' => true,
-            'privateDirectoryPath' => __DIR__.'/../../private/test/'
-        ]);
+        $this->app = new Application('test');
 
         $this->em = $this->app['orm.em'];
     }

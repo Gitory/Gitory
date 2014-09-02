@@ -129,7 +129,7 @@ class CliContext implements SnippetAcceptingContext
             $php = $finder->find();
 
             $this->processBuilder = new ProcessBuilder();
-            $this->processBuilder->setPrefix(array($php, __DIR__.'/../../bin/gitory'));
+            $this->processBuilder->setPrefix(array($php, __DIR__.'/../../bin/gitory', '--env=test'));
         }
 
         return $this->processBuilder;
