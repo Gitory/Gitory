@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a8b59db7a595adca96da2f3990a864e2",
+    "hash": "fd326d3e2d1b44d60d91f9d6dfd00df7",
     "packages": [
         {
             "name": "cypresslab/gitelephant",
@@ -665,16 +665,16 @@
         },
         {
             "name": "gitory/pimple-cli",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Gitory/pimple-cli.git",
-                "reference": "4e22c02c4726dbad7754789bdf01b8f3d64ecf94"
+                "reference": "d498aa8347024ef9a45eae011e1c528680d4829d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Gitory/pimple-cli/zipball/4e22c02c4726dbad7754789bdf01b8f3d64ecf94",
-                "reference": "4e22c02c4726dbad7754789bdf01b8f3d64ecf94",
+                "url": "https://api.github.com/repos/Gitory/pimple-cli/zipball/d498aa8347024ef9a45eae011e1c528680d4829d",
+                "reference": "d498aa8347024ef9a45eae011e1c528680d4829d",
                 "shasum": ""
             },
             "require": {
@@ -682,6 +682,10 @@
             },
             "require-dev": {
                 "phpspec/phpspec": "~2.0"
+            },
+            "suggest": {
+                "silex/silex": "Provide a light framework to build PHP applications",
+                "symfony/console": "The Console component allows you to create command-line commands"
             },
             "type": "library",
             "autoload": {
@@ -704,7 +708,7 @@
                 }
             ],
             "description": "CLI commands for Pimple applications",
-            "time": "2014-08-28 07:47:33"
+            "time": "2014-09-02 20:09:28"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -2363,8 +2367,7 @@
         "silex/silex": 20,
         "dflydev/doctrine-orm-service-provider": 20,
         "saxulum/saxulum-doctrine-orm-manager-registry-provider": 20,
-        "cypresslab/gitelephant": 20,
-        "gitory/pimple-cli": 20
+        "cypresslab/gitelephant": 20
     },
     "prefer-stable": false,
     "platform": {
