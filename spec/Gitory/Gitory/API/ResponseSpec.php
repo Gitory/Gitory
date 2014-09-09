@@ -15,10 +15,7 @@ class ResponseSpec extends ObjectBehavior
     public function it_should_wrap_a_successful_response_data()
     {
         $data = ['doctor' => 'who'];
-        $content = json_encode([
-            'meta' => ['status' => 'success'],
-            'response' => $data
-        ]);
+        $content = json_encode($data);
 
         $this->setData($data);
         $this->getContent()->shouldBe($content);
@@ -31,11 +28,7 @@ class ResponseSpec extends ObjectBehavior
             'message' => 'Bad Wold Corp'
         ];
         $content = json_encode([
-            'meta' => [
-                'status' => 'failure',
-                'error' => $data
-            ],
-            'response' => []
+            'error' => $data
         ]);
 
         $this->setStatusCode(400);

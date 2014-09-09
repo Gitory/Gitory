@@ -11,19 +11,8 @@ class Response extends JsonResponse
      */
     public function setData($data = [])
     {
-        if ($this->isSuccessful()) {
-            $data = [
-                'meta' => ['status' => 'success'],
-                'response' => $data,
-            ];
-        } else {
-            $data = [
-                'meta' => [
-                    'status' => 'failure',
-                    'error' => $data,
-                ],
-                'response' => []
-            ];
+        if (!$this->isSuccessful()) {
+            $data = ['error' => $data];
         }
 
         parent::setData($data);

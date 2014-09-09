@@ -11,59 +11,31 @@ Feature: Repositories basic API
          When I make a "get" request to "/repositories"
          Then the response should be
             """
-            {
-                "meta": {
-                    "status": "success"
-                },
-                "response": {
-                    "repositories": [
-                        "gallifrey",
-                        "the-doctor"
-                    ]
-                }
-            }
+            [
+                {"identifier": "gallifrey"},
+                {"identifier": "the-doctor"}
+            ]
             """
 
     Scenario: Add a repository with an existing identifier
-         When I make a "post" request to "/repository"
-            """
-            {
-                "identifier": "gallifrey"
-            }
-            """
+         When I make a "post" request to "/repository/gallifrey"
          Then the response status code should be 409
          Then the response should be
             """
             {
-                "meta": {
-                    "status": "failure",
-                    "error": {
-                        "id": "existing-repository-identifier-exception",
-                        "message": "A repository with identifier \"gallifrey\" already exists."
-                    }
-                },
-                "response": {}
+                "error": {
+                    "id": "existing-repository-identifier-exception",
+                    "message": "A repository with identifier \"gallifrey\" already exists."
+                }
             }
             """
 
     Scenario: Add a repository
-         When I make a "post" request to "/repository"
-            """
-            {
-                "identifier": "rose"
-            }
-            """
+         When I make a "post" request to "/repository/rose"
          Then the response status code should be 201
          Then the response should be
             """
             {
-                "meta": {
-                    "status": "success"
-                },
-                "response": {
-                    "repository": {
-                        "identifier": "rose"
-                    }
-                }
+                "identifier": "rose"
             }
             """

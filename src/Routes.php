@@ -13,14 +13,22 @@ trait Routes
 
         $this->get('/repositories', 'repository.controller:listAction');
 
-        $this->post('/repository', 'repository.controller:createAction');
+        $this->post('/repository/{identifier}', 'repository.controller:createAction');
+
+        $this->match('{apiEndpoints}', 'api.controller:optionsAction')
+            ->method('OPTIONS')
+            ->assert('apiEndpoints', '.+');
+
+        $this->after($this['api.CORS']);
     }
 
     /**
-     * Maps a GET request to a callable.
+     * Maps a pattern to a callable.
+     *
+     * You can optionally specify HTTP methods that should be matched.
      *
      * @param string $pattern Matched route pattern
-     * @param string  $to     Callback that returns the response when matched
+     * @param string $to      Callback that returns the response when matched
      *
      * @return Controller
      */
@@ -30,11 +38,32 @@ trait Routes
      * Maps a POST request to a callable.
      *
      * @param string $pattern Matched route pattern
-     * @param string  $to     Callback that returns the response when matched
+     * @param string $to      Callback that returns the response when matched
      *
      * @return Controller
      */
     abstract public function post($pattern, $to = null);
+
+    /**
+     * Maps a OPTION request to a callable.
+     *
+     * @param string $pattern Matched route pattern
+     * @param string $to      Callback that returns the response when matched
+     *
+     * @return Controller
+     */
+    abstract public function match($pattern, $to = null);
+
+    /**
+     * Registers an after filter.
+     *
+     * After filters are run after the controller has been executed.
+     *
+     * @param mixed $callback After filter callback
+     * @param int   $priority The higher this value, the earlier an event
+     *                        listener will be triggered in the chain (defaults to 0)
+     */
+    abstract public function after($callback, $priority = 0);
 
     abstract public function register(ServiceProviderInterface $provider, array $values = []);
 }

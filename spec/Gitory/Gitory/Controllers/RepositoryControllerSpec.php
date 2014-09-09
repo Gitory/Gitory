@@ -29,36 +29,24 @@ class RepositoryControllerSpec extends ObjectBehavior
 
         $response->shouldHaveType('Symfony\Component\HttpFoundation\JsonResponse');
         $response->getStatusCode()->shouldBe(200);
-        $response->getContent()->shouldBe(json_encode([
-            'meta' => ['status' => 'success'],
-            'response' => [
-                'repositories' => ['gallifrey']
-            ]
-        ]));
+        $response->getContent()->shouldBe(json_encode([['identifier' => 'gallifrey']]));
     }
 
-    public function it_create_a_repositories(
+    public function it_create_a_repository(
         RepositoryManager $repositoryManager,
-        Request $request,
         Repository $repository
     ) {
-        $request->getContent()->willReturn('{"identifier": "gallifrey"}');
         $repository->identifier()->willReturn('gallifrey');
         $repositoryManager->save(Argument::type('Gitory\Gitory\Entities\Repository'))->willReturn(
             $repository
         );
 
-        $response = $this->createAction($request);
+        $response = $this->createAction('gallifrey');
 
         $response->shouldHaveType('Symfony\Component\HttpFoundation\JsonResponse');
         $response->getStatusCode()->shouldBe(201);
         $response->getContent()->shouldBe(json_encode([
-            'meta' => ['status' => 'success'],
-            'response' => [
-                'repository' => [
-                    'identifier' => 'gallifrey'
-                ]
-            ]
+            'identifier' => 'gallifrey'
         ]));
     }
 
@@ -77,14 +65,10 @@ class RepositoryControllerSpec extends ObjectBehavior
         $response->shouldHaveType('Symfony\Component\HttpFoundation\JsonResponse');
         $response->getStatusCode()->shouldBe(409);
         $response->getContent()->shouldBe(json_encode([
-            'meta' => [
-                'status' => 'failure',
-                'error' => [
-                    'id' => 'existing-repository-identifier-exception',
-                    'message' => $message
-                ]
-            ],
-            'response' => []
+            'error' => [
+                'id' => 'existing-repository-identifier-exception',
+                'message' => $message
+            ]
         ]));
     }
 }

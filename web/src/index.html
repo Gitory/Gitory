@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html ng:csp>
+	<head>
+		<meta charset="utf-8">
+		<title>Gitory</title>
+
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+
+		<link rel="stylesheet" type="text/css" href="/gitory.css"/>
+
+		<script src="/gitory.js"></script>
+	</head>
+	<body ng:controller="DefaultController">
+		<h1>Gitory</h1>
+		<h2>Repository list</h2>
+
+		<div ng:show="flashMessage">
+			<p class="flash-message">
+				{{ flashMessage }}
+			</p>
+			<button ng:click="flashMessage = null">✘</button>
+		</div>
+
+		<ul>
+			<li ng:repeat="repository in repositories"> {{ repository.identifier }}</li>
+		</ul>
+
+		<h2>Repository form</h2>
+		<form ng:submit="createRepository()">
+			<input ng:model="identifier" placeholder="identifier" ng:required="true"/>
+			<input type="submit" value="create repository"/>
+		</form>
+	</body>
+</html>

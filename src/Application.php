@@ -33,7 +33,7 @@ class Application extends SilexApplication
     /**
      * Load application config and replace application parameters
      * @param  string $env application environment name
-     * @return array
+     * @return Array
      */
     private function config($env)
     {

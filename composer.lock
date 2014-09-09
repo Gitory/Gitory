@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d7cd3e063a1e7762961a0dc9eab86915",
+    "hash": "e0571fef95fcaced57a03edec407ca6f",
     "packages": [
         {
             "name": "cypresslab/gitelephant",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/matteosister/GitElephant.git",
-                "reference": "b9a1c313e7bbcbc461573372258e2f5b8ed63335"
+                "reference": "2711e23c96e5b7b831cbfcf794866e685825f771"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matteosister/GitElephant/zipball/b9a1c313e7bbcbc461573372258e2f5b8ed63335",
-                "reference": "b9a1c313e7bbcbc461573372258e2f5b8ed63335",
+                "url": "https://api.github.com/repos/matteosister/GitElephant/zipball/2711e23c96e5b7b831cbfcf794866e685825f771",
+                "reference": "2711e23c96e5b7b831cbfcf794866e685825f771",
                 "shasum": ""
             },
             "require": {
@@ -53,7 +53,7 @@
             "keywords": [
                 "git"
             ],
-            "time": "2014-09-15 20:15:45"
+            "time": "2014-08-29 21:42:42"
         },
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -967,12 +967,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/saxulum/saxulum-doctrine-orm-manager-registry-provider.git",
-                "reference": "01328c03eb5da9b18c33ecf6ac16be971b7ec196"
+                "reference": "defe747bc4b00cc1db87c41754e6bb00f6ea6bbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saxulum/saxulum-doctrine-orm-manager-registry-provider/zipball/01328c03eb5da9b18c33ecf6ac16be971b7ec196",
-                "reference": "01328c03eb5da9b18c33ecf6ac16be971b7ec196",
+                "url": "https://api.github.com/repos/saxulum/saxulum-doctrine-orm-manager-registry-provider/zipball/defe747bc4b00cc1db87c41754e6bb00f6ea6bbf",
+                "reference": "defe747bc4b00cc1db87c41754e6bb00f6ea6bbf",
                 "shasum": ""
             },
             "require": {
@@ -1021,7 +1021,7 @@
                 "pimple",
                 "silex"
             ],
-            "time": "2014-09-13 15:02:34"
+            "time": "2014-08-25 15:10:02"
         },
         {
             "name": "silex/silex",
@@ -2441,5 +2441,7 @@
     "platform": {
         "php": ">=5.4.0"
     },
-    "platform-dev": []
+    "platform-dev": {
+        "ext-pdo_sqlite": "*"
+    }
 }

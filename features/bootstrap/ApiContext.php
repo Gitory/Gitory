@@ -43,10 +43,10 @@ class ApiContext implements SnippetAcceptingContext
      */
     public static function startServer()
     {
-        $finder = new PhpExecutableFinder;
-        $php = $finder->find();
-
-        $builder = new ProcessBuilder(['exec', $php, '-S', self::ADDRESS, __DIR__.'/../../web/api/index-test.php']);
+        $finder  = new PhpExecutableFinder;
+        $php     = $finder->find();
+        $router  = __DIR__.'/../../api/test.php';
+        $builder = new ProcessBuilder(['exec', $php, '-S', self::ADDRESS, $router]);
         $builder->inheritEnvironmentVariables(true);
 
         self::$phpProcess = $builder->getProcess();
@@ -120,6 +120,18 @@ class ApiContext implements SnippetAcceptingContext
     {
         if($this->response->getStatusCode() !== $code) {
             throw new Exception('Response code : '.$this->response->getStatusCode().' does not match '.$code);
+        }
+    }
+
+    /**
+     * @Then the response header :name should be :value
+     */
+    public function theResponseHeaderShouldBe($name, $value)
+    {
+        if($this->response->getHeader($name) !== $value) {
+            throw new Exception(
+                'Response `'.$name.'` header : '.$this->response->getHeader($name).' does not match '.$value
+            );
         }
     }
 }

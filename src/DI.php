@@ -8,6 +8,7 @@ use Silex\Provider\DoctrineServiceProvider;
 use Pimple\ServiceProviderInterface;
 use Gitory\Gitory\Managers\Doctrine\DoctrineRepositoryManager;
 use Gitory\Gitory\GitElephantGitHosting;
+use Gitory\Gitory\API\CORS;
 use Gitory\PimpleCli\ServiceCommandServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Monolog\Processor\PsrLogMessageProcessor;
@@ -67,6 +68,10 @@ trait DI
 
         $this['repository.hosting'] = function () use ($config) {
             return new GitElephantGitHosting($config['repositories_path']);
+        };
+
+        $this['api.CORS'] = function () {
+            return [new CORS('*', ['GET', 'DELETE', 'POST', 'PUT'], ['Content-Type']), 'setCORSheaders'];
         };
     }
 
