@@ -9,12 +9,18 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectRepository;
 use PhpSpec\ObjectBehavior;
+use Psr\Log\LoggerInterface;
 
 class DoctrineRepositoryManagerSpec extends ObjectBehavior
 {
-    public function let(ManagerRegistry $registry, ObjectManager $om, ObjectRepository $repoManager)
+    public function let(
+        ManagerRegistry $registry,
+        ObjectManager $om,
+        ObjectRepository $repoManager,
+        LoggerInterface $logger
+    )
     {
-        $this->beConstructedWith($registry);
+        $this->beConstructedWith($registry, $logger);
         $registry->getManagerForClass(DoctrineRepositoryManager::ENTITY_CLASS)->willReturn($om);
         $om->getRepository(DoctrineRepositoryManager::ENTITY_CLASS)->willReturn($repoManager);
     }
@@ -39,20 +45,22 @@ class DoctrineRepositoryManagerSpec extends ObjectBehavior
     ) {
         $repo->identifier()->willReturn('gallifrey');
         $repoManager->findOneBy(['identifier' => 'gallifrey'])->willReturn($existingRepo);
-        $exception = new ExistingRepositoryIdentifierException('A repository with identifier gallifrey already exists.');
+        $exception = new ExistingRepositoryIdentifierException('A repository with identifier "gallifrey" already exists.');
         $this->shouldThrow($exception)->duringSave($repo);
     }
 
     public function it_saves_a_new_repository(
         Repository $repo,
         ObjectRepository $repoManager,
-        ObjectManager $om
+        ObjectManager $om,
+        LoggerInterface $logger
     ) {
         $repo->identifier()->willReturn('rose');
         $repoManager->findOneBy(['identifier' => 'rose'])->willReturn(null);
 
         $om->persist($repo)->shouldBeCalled();
         $om->flush()->shouldBeCalled();
+        $logger->notice('Repository "{identifier}" has been created in database', ['identifier' => 'rose'])->shouldBeCalled();
         $this->save($repo)->shouldReturn($repo);
     }
 }

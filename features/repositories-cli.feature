@@ -11,9 +11,9 @@ Feature: Repositories basic CLI tools
 
     Scenario: Create a new repository
          When I execute "repository:create badwolf"
-         Then the output should be
+         Then the output should contains
             """
-            Repository badwolf has been created
+            Repository "badwolf" has been created
             """
           And the git repository "badwolf" exists
 
@@ -21,7 +21,7 @@ Feature: Repositories basic CLI tools
          When I execute "repository:create dalek"
          Then the exception output should be
             """
-            Repository dalek not found in database, git repository hasn't been created
+            Repository "dalek" not found in database, git repository hasn't been created
             """
           And the "dalek" repository does not exists
 
@@ -30,5 +30,5 @@ Feature: Repositories basic CLI tools
          When I execute "repository:create gallifrey"
          Then the exception output should be
             """
-            Repository gallifrey folder already exists
+            Repository "gallifrey" folder already exists
             """

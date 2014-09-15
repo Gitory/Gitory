@@ -1,3 +1,6 @@
 gitory:
     private_path: %root_dir%/private/%env%/
     repositories_path: %root_dir%/private/%env%/repositories/
+    log:
+        cli: %root_dir%/private/%env%/cli.log
+        api: %root_dir%/private/%env%/api.log

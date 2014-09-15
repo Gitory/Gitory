@@ -39,7 +39,7 @@ Feature: Repositories basic API
                     "status": "failure",
                     "error": {
                         "id": "existing-repository-identifier-exception",
-                        "message": "A repository with identifier gallifrey already exists."
+                        "message": "A repository with identifier \"gallifrey\" already exists."
                     }
                 },
                 "response": {}

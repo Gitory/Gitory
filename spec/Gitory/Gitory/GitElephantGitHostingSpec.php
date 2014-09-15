@@ -50,7 +50,7 @@ class GitElephantGitHostingSpec extends ObjectBehavior
     public function it_init_a_repository_with_an_existing_repository_folder()
     {
         mkdir($this->repositoriesPath.'/gallifrey/');
-        $exception = new Exception('Repository gallifrey folder already exists');
+        $exception = new Exception('Repository "gallifrey" folder already exists');
         $this->shouldThrow($exception)->duringInit('gallifrey');
     }
 
