@@ -38,21 +38,21 @@ class CliContext implements SnippetAcceptingContext
     }
 
     /**
-     * @Then the output should be
+     * @Then the output should contains
      */
-    public function theOutputShouldBe(PyStringNode $output)
+    public function theOutputShouldContains(PyStringNode $output)
     {
         $processOutput = $this->process->getOutput();
-        $behatOutputTemplate = (string)$output.PHP_EOL;
+        $behatOutputTemplate = (string)$output;
 
-        $diff = new \Diff(
-            explode(PHP_EOL, print_r($behatOutputTemplate, true)),
-            explode(PHP_EOL, print_r($processOutput, true))
-        );
+        if(strpos($processOutput, $behatOutputTemplate) === false) {
+            $diff = new \Diff(
+                explode(PHP_EOL, print_r($behatOutputTemplate.PHP_EOL, true)),
+                explode(PHP_EOL, print_r($processOutput, true))
+            );
+            $renderer = new \Diff_Renderer_Text_Unified;
+            $stringDiff = $diff->render($renderer);
 
-        $renderer = new \Diff_Renderer_Text_Unified;
-        $stringDiff = $diff->render($renderer);
-        if($stringDiff !== "") {
             throw new Exception('Output does not match: '. PHP_EOL . $stringDiff);
         }
     }
@@ -151,7 +151,6 @@ class CliContext implements SnippetAcceptingContext
         );
 
         foreach ($iterator as $file) {
-            // var_dump($file);
             if ($file->isDir()) {
                 rmdir((string)$file);
             }

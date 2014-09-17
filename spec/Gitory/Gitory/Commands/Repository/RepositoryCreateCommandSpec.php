@@ -13,13 +13,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Prophecy\Argument;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 class RepositoryCreateCommandSpec extends ObjectBehavior
 {
 
-    public function let(RepositoryManager $repositoryManager, GitHosting $gitHosting)
+    public function let(RepositoryManager $repositoryManager, GitHosting $gitHosting, LoggerInterface $logger)
     {
-        $this->beConstructedWith($repositoryManager, $gitHosting);
+        $this->beConstructedWith($repositoryManager, $gitHosting, $logger);
     }
 
     public function it_is_initializable()
@@ -38,7 +39,7 @@ class RepositoryCreateCommandSpec extends ObjectBehavior
         $input->isInteractive()->willReturn(false);
         $input->validate()->willReturn(null);
         $input->getArgument('identifier')->willReturn($identifier);
-        $exception = new Exception('Repository '.$identifier.' not found in database, git repository hasn\'t been created');
+        $exception = new Exception('Repository "'.$identifier.'" not found in database, git repository hasn\'t been created');
         $this->shouldThrow($exception)->duringRun($input, $output);
     }
 
@@ -47,9 +48,9 @@ class RepositoryCreateCommandSpec extends ObjectBehavior
         Repository $repository,
         GitHosting $gitHosting,
         InputInterface $input,
-        OutputInterface $output
-        )
-    {
+        OutputInterface $output,
+        LoggerInterface $logger
+    ) {
         $identifier = 'gallifrey';
         $repositoryManager->findByIdentifier($identifier)->willReturn($repository);
         $repository->identifier()->willReturn($identifier);
@@ -60,7 +61,7 @@ class RepositoryCreateCommandSpec extends ObjectBehavior
         $input->getArgument('identifier')->willReturn($identifier);
 
         $gitHosting->init($identifier)->shouldBeCalled();
-        $output->writeln('Repository '.$identifier.' has been created')->shouldBeCalled();
+        $logger->notice('Repository "{identifier}" has been created', ['identifier' => $identifier])->shouldBeCalled();
         $this->run($input, $output);
     }
 }

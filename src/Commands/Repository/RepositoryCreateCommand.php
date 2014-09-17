@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Gitory\Gitory\GitHosting;
 use Exception;
+use Psr\Log\LoggerInterface;
 
 class RepositoryCreateCommand extends Command
 {
@@ -24,16 +25,26 @@ class RepositoryCreateCommand extends Command
     private $repositoriesFolderPath;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * @var GitHosting
      */
     private $gitHosting;
 
-    public function __construct(RepositoryManager $repositoryManager, GitHosting $gitHosting)
+    public function __construct(
+        RepositoryManager $repositoryManager,
+        GitHosting $gitHosting,
+        LoggerInterface $logger
+    )
     {
         parent::__construct();
 
         $this->repositoryManager = $repositoryManager;
         $this->gitHosting = $gitHosting;
+        $this->logger = $logger;
     }
 
     /**
@@ -58,10 +69,10 @@ class RepositoryCreateCommand extends Command
         $repository = $this->repositoryManager->findByIdentifier($identifier);
 
         if($repository === null) {
-            throw new  Exception('Repository '.$identifier.' not found in database, git repository hasn\'t been created');
+            throw new  Exception('Repository "'.$identifier.'" not found in database, git repository hasn\'t been created');
         } else {
             $this->gitHosting->init($identifier);
-            $output->writeln('Repository '.$identifier.' has been created');
+            $this->logger->notice('Repository "{identifier}" has been created', ['identifier' => $identifier]);
         }
     }
 }

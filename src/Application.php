@@ -13,7 +13,7 @@ class Application extends SilexApplication
 {
     use DI, Controllers, Routes, Commands;
 
-    public function __construct($env = 'prod', $debug = false)
+    public function __construct($env = 'prod', $debug = false, $interface = 'api')
     {
         parent::__construct(['debug' => $debug]);
 
@@ -21,7 +21,7 @@ class Application extends SilexApplication
 
         $this['env'] = $env;
 
-        $this->initDI($config['gitory']);
+        $this->initDI($config['gitory'], $interface);
 
         $this->initControllers();
 

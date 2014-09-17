@@ -29,7 +29,7 @@ class GitElephantGitHosting implements GitHosting
     public function init($identifier)
     {
         if(file_exists($this->repositoriesFolderPath.$identifier)) {
-            throw new Exception('Repository '.$identifier.' folder already exists');
+            throw new Exception('Repository "'.$identifier.'" folder already exists');
         } else {
             mkdir($this->repositoriesFolderPath.$identifier, 0777, true);
 

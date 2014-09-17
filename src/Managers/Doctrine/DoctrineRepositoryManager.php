@@ -7,6 +7,7 @@ use Gitory\Gitory\Entities\Repository;
 use Gitory\Gitory\Exceptions\ExistingRepositoryIdentifierException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Common\Persistence\ObjectRepository;
+use Psr\Log\LoggerInterface;
 
 class DoctrineRepositoryManager implements RepositoryManager
 {
@@ -17,6 +18,11 @@ class DoctrineRepositoryManager implements RepositoryManager
     private $registry;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * Entity class name
      */
     const ENTITY_CLASS = 'Gitory\Gitory\Entities\Repository';
@@ -24,9 +30,10 @@ class DoctrineRepositoryManager implements RepositoryManager
     /**
      * @param \Doctrine\Common\Persistence\ManagerRegistry $registry registry manager
      */
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, LoggerInterface $logger)
     {
         $this->registry = $registry;
+        $this->logger = $logger;
     }
 
     /**
@@ -56,12 +63,14 @@ class DoctrineRepositoryManager implements RepositoryManager
         $existingRepository = $this->getRepository()->findOneBy(['identifier' => $identifier]);
 
         if($existingRepository !== null) {
-            throw new  ExistingRepositoryIdentifierException('A repository with identifier '.$identifier.' already exists.');
+            throw new  ExistingRepositoryIdentifierException('A repository with identifier "'.$identifier.'" already exists.');
         }
 
         $manager = $this->getManager();
         $manager->persist($repository);
         $manager->flush();
+
+        $this->logger->notice('Repository "{identifier}" has been created in database', ['identifier' => $identifier]);
 
         return $repository;
     }

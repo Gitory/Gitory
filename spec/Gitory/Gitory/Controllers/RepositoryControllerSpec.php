@@ -74,7 +74,6 @@ class RepositoryControllerSpec extends ObjectBehavior
         );
 
         $response = $this->createAction($request);
-
         $response->shouldHaveType('Symfony\Component\HttpFoundation\JsonResponse');
         $response->getStatusCode()->shouldBe(409);
         $response->getContent()->shouldBe(json_encode([

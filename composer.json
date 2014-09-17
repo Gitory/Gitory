@@ -24,7 +24,9 @@
         "saxulum/saxulum-doctrine-orm-manager-registry-provider": "dev-master@dev",
         "cypresslab/gitelephant": "dev-develop",
         "gitory/pimple-cli": "~1.0",
-        "symfony/config": "~2.5"
+        "symfony/config": "~2.5",
+        "monolog/monolog": "~1.0",
+        "psr/log": "~1.0"
     },
     "require-dev":
     {
