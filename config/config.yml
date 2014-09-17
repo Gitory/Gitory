@@ -4,3 +4,6 @@ gitory:
     log:
         cli: %root_dir%/private/%env%/cli.log
         api: %root_dir%/private/%env%/api.log
+    db:
+        driver: pdo_sqlite
+        path: %root_dir%/private/%env%/gitory.db

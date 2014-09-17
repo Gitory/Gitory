@@ -21,25 +21,22 @@ trait DI
      */
     private function initDI($config, $interface = 'api')
     {
-        $this->register(new DoctrineServiceProvider, array(
-            "db.options" => array(
-                "driver" => "pdo_sqlite",
-                "path" => $config['private_path'].'gitory.db',
-            ),
-        ));
+        $this->register(new DoctrineServiceProvider, [
+            "db.options" => $config['db']
+        ]);
 
-        $this->register(new DoctrineOrmServiceProvider, array(
+        $this->register(new DoctrineOrmServiceProvider, [
             "orm.proxies_dir" => $config['private_path'].'doctrine/proxies/',
-            "orm.em.options" => array(
-                "mappings" => array(
-                    array(
+            "orm.em.options" => [
+                "mappings" => [
+                    [
                         "type" => "annotation",
                         "namespace" => "Gitory\Gitory\Entities",
                         "path" => __DIR__.'/Entities',
-                    ),
-                ),
-            ),
-        ));
+                    ],
+                ],
+            ],
+        ]);
 
         $this->register(new ServiceCommandServiceProvider());
 
