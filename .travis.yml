@@ -1,21 +1,26 @@
 language: php
 
 php:
+  - 5.3 # run javascript test instead of php tests in 5.3
   - 5.4
   - 5.5
   - 5.6
 
+before_install:
+  - if [ $(phpenv version-name) = "5.3" ]; then export DISPLAY=:99.0; fi
+  - if [ $(phpenv version-name) = "5.3" ]; then sh -e /etc/init.d/xvfb start; fi
+
 before_script:
-  - composer install -n
+  - if [ $(phpenv version-name) != "5.3" ]; then composer install -n; fi
+  - if [ $(phpenv version-name) = "5.3" ]; then npm install; fi
 
 script:
-  - vendor/bin/phpspec run -f pretty
-  - vendor/bin/behat
+  - if [ $(phpenv version-name) != "5.3" ]; then vendor/bin/phpspec run -f pretty; fi
+  - if [ $(phpenv version-name) != "5.3" ]; then vendor/bin/behat; fi
+  - if [ $(phpenv version-name) = "5.3" ]; then gulp test:js:specs; fi
+  - if [ $(phpenv version-name) = "5.3" ]; then gulp test:js:e2e; fi
 
 notifications:
   webhooks:
     urls:
       - https://webhooks.gitter.im/e/677fd54fdfe4b680834c
-    on_success: always  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
-    on_start: false     # default: false

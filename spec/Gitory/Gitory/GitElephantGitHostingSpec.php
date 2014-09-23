@@ -58,7 +58,7 @@ class GitElephantGitHostingSpec extends ObjectBehavior
     {
         $identifier = 'gallifrey';
         $this->init($identifier);
-        if(!file_exists($this->repositoriesPath.$identifier.'/config')) {
+        if (!file_exists($this->repositoriesPath.$identifier.'/config')) {
             throw new Exception('Repository '.$identifier.' does not exists');
         }
     }

@@ -6,7 +6,6 @@ use Gitory\Gitory\Entities\Repository;
 use Gitory\Gitory\Managers\RepositoryManager;
 use Gitory\Gitory\Exceptions\ExistingRepositoryIdentifierException;
 use Gitory\Gitory\API\Response;
-use Symfony\Component\HttpFoundation\Request;
 
 class RepositoryController
 {
@@ -21,19 +20,13 @@ class RepositoryController
     {
         $repositories = $this->repositoryManager->findAll();
 
-        return new Response([
-            'repositories' => array_map(function ($repository) {
-                return $repository->identifier();
-            },
-            $repositories)
-        ]);
+        return new Response(array_map(function ($repository) {
+            return ['identifier' => $repository->identifier()];
+        }, $repositories));
     }
 
-    public function createAction(Request $request)
+    public function createAction($identifier)
     {
-        $requestContent = $request->getContent();
-
-        $identifier = json_decode($requestContent)->identifier;
         $repository = new Repository($identifier);
         try {
             $repository = $this->repositoryManager->save($repository);
@@ -41,13 +34,11 @@ class RepositoryController
             return new Response([
                 'id' => 'existing-repository-identifier-exception',
                 'message' => $e->getMessage()
-            ], 409);
+            ], Response::HTTP_CONFLICT);
         }
 
         return new Response([
-            'repository' => [
-                'identifier' => $repository->identifier()
-            ]
-        ], 201);
+            'identifier' => $repository->identifier()
+        ], Response::HTTP_CREATED);
     }
 }

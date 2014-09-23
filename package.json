@@ -1,0 +1,61 @@
+{
+  "name": "Gitory",
+  "version": "0.1.0",
+  "description": "Gitory",
+  "main": "js/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "^1.2.21",
+    "angular-mocks": "^1.2.22",
+    "browserify": "^5.10.1",
+    "chai": "^1.9.1",
+    "connect-livereload": "^0.4.0",
+    "envify": "^3.0.0",
+    "express": "^4.8.5",
+    "gulp": "^3.8.7",
+    "gulp-livereload": "^2.1.1",
+    "gulp-load-plugins": "^0.6.0",
+    "gulp-notify": "^1.5.0",
+    "gulp-pleeease": "^1.0.2",
+    "gulp-plumber": "^0.6.5",
+    "gulp-protractor": "0.0.11",
+    "gulp-util": "^3.0.0",
+    "http-backend-proxy": "^1.3.3",
+    "karma": "^0.12.23",
+    "karma-bro": "^0.7.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-growl-notifications-reporter": "0.0.2",
+    "karma-mocha": "^0.1.9",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-sauce-launcher": "^0.2.10",
+    "minifyify": "mathroc/minifyify#master",
+    "mocha": "^1.21.4",
+    "normalize.css": "~3.0.1",
+    "npm-angular-resource": "^1.3.0-build.2880",
+    "php-built-in-server": "^0.1.4",
+    "protractor": "^1.1.1",
+    "sinon": "^1.10.3",
+    "sinon-chai": "^2.5.0",
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^1.0.2",
+    "yargs": "^1.3.1",
+    "gulp-karma": "0.0.4"
+  },
+  "scripts": {
+    "test": "gulp test",
+    "build": "gulp",
+    "watch": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Gitory/Gitory"
+  },
+  "author": "",
+  "license": "aGPLv3",
+  "bugs": {
+    "url": "https://github.com/Gitory/Gitory/issues"
+  },
+  "homepage": "https://github.com/Gitory/Gitory"
+}

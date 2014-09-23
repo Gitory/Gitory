@@ -34,7 +34,8 @@
         "phpspec/phpspec": "~2.0",
         "guzzlehttp/guzzle": "~4.0",
         "symfony/process": "~2.5",
-        "php-vfs/php-vfs": "~1.1"
+        "php-vfs/php-vfs": "~1.1",
+        "ext-pdo_sqlite": "*"
     },
     "autoload": {
         "psr-4": {
