@@ -7,3 +7,5 @@ gitory:
     db:
         driver: pdo_sqlite
         path: %root_dir%/private/%env%/gitory.db
+    lock:
+        path: %root_dir%/private/%env%/lock/
