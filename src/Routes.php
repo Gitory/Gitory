@@ -4,6 +4,8 @@ namespace Gitory\Gitory;
 
 use Pimple\ServiceProviderInterface;
 use Silex\Provider\ServiceControllerServiceProvider;
+use Silex\Provider\SecurityServiceProvider;
+use Symfony\Component\HttpFoundation\RequestMatcher;
 
 trait Routes
 {
@@ -20,6 +22,31 @@ trait Routes
             ->assert('apiEndpoints', '.+');
 
         $this->after($this['api.CORS']);
+
+        $this->register(new SecurityServiceProvider, [
+            'security.firewalls' => [
+                'oauth.token' => [
+                    'pattern' => '^/auth/token',
+                    'security' => false,
+                ],
+                'oauth.authorize' => [
+                    'pattern' => '^/auth/authorize',
+                    'http' => true,
+                    'users' => $this['users.provider'],
+                ],
+                'api' => [
+                    'pattern' => new RequestMatcher(null, null, ['DELETE', 'GET', 'HEAD', 'POST', 'PUT']),
+                    'stateless' => true,
+                    'oauth2' => true,
+                    'security' => true,
+                    'users' => $this['users.provider'],
+                ],
+            ],
+        ]);
+
+        $this['security.entry_point.api.oauth2.realm'] = 'Gitory';
+
+        $this->mount('/auth/', $this['oauth2.server_provider']);
     }
 
     /**
@@ -65,5 +92,25 @@ trait Routes
      */
     abstract public function after($callback, $priority = 0);
 
+    /**
+     * Registers a service provider.
+     *
+     * @param ServiceProviderInterface $provider A ServiceProviderInterface instance
+     * @param array                    $values   An array of values that customizes the provider
+     *
+     * @return Application
+     */
     abstract public function register(ServiceProviderInterface $provider, array $values = []);
+
+    /**
+     * Mounts controllers under the given route prefix.
+     *
+     * @param string                                           $prefix      The route prefix
+     * @param ControllerCollection|ControllerProviderInterface $controllers A ControllerCollection or a ControllerProviderInterface instance
+     *
+     * @return Application
+     *
+     * @throws \LogicException
+     */
+    abstract public function mount($prefix, $controllers);
 }

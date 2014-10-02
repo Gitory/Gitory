@@ -1,5 +1,10 @@
 default:
     suites:
+        user:
+            contexts:
+                - DomainContext
+            filters:
+                role: user
         api:
             contexts:
                 - DomainContext

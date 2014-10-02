@@ -4,8 +4,102 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "52e14bbf91466bd6b744be8caab6071f",
+    "hash": "353f9b0325df19efbe9fdffec5a44191",
     "packages": [
+        {
+            "name": "bshaffer/oauth2-server-httpfoundation-bridge",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bshaffer/oauth2-server-httpfoundation-bridge.git",
+                "reference": "d9c4b6e30443a688df810db641d8433150bf71af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bshaffer/oauth2-server-httpfoundation-bridge/zipball/d9c4b6e30443a688df810db641d8433150bf71af",
+                "reference": "d9c4b6e30443a688df810db641d8433150bf71af",
+                "shasum": ""
+            },
+            "require": {
+                "bshaffer/oauth2-server-php": ">=0.9",
+                "php": ">=5.3.0",
+                "symfony/http-foundation": ">=2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "OAuth2\\HttpFoundationBridge": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brent Shaffer",
+                    "email": "bshafs@gmail.com",
+                    "homepage": "http://brentertainment.com"
+                }
+            ],
+            "description": "A bridge to HttpFoundation for oauth2-server-php",
+            "homepage": "http://github.com/bshaffer/oauth2-server-httpfoundation-bridge",
+            "keywords": [
+                "auth",
+                "httpfoundation",
+                "oauth",
+                "oauth2"
+            ],
+            "time": "2014-08-27 15:40:29"
+        },
+        {
+            "name": "bshaffer/oauth2-server-php",
+            "version": "v1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bshaffer/oauth2-server-php.git",
+                "reference": "74fcc75e47614c1417c750e907a44567d9ceee1f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bshaffer/oauth2-server-php/zipball/74fcc75e47614c1417c750e907a44567d9ceee1f",
+                "reference": "74fcc75e47614c1417c750e907a44567d9ceee1f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "suggest": {
+                "aws/aws-sdk-php": "Required to use the DynamoDB storage engine",
+                "predis/predis": "Required to use the Redis storage engine",
+                "thobbs/phpcassa": "Required to use the Cassandra storage engine"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "OAuth2": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brent Shaffer",
+                    "email": "bshafs@gmail.com",
+                    "homepage": "http://brentertainment.com"
+                }
+            ],
+            "description": "OAuth2 Server for PHP",
+            "homepage": "http://github.com/bshaffer/oauth2-server-php",
+            "keywords": [
+                "auth",
+                "oauth",
+                "oauth2"
+            ],
+            "time": "2014-08-28 02:13:42"
+        },
         {
             "name": "cypresslab/gitelephant",
             "version": "v1.0.10",
@@ -1644,6 +1738,127 @@
                 "url"
             ],
             "time": "2014-09-22 15:28:36"
+        },
+        {
+            "name": "symfony/security",
+            "version": "v2.5.6",
+            "target-dir": "Symfony/Component/Security",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Security.git",
+                "reference": "533f832af99e32dd74d7e3a7d6a3857c3d149614"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Security/zipball/533f832af99e32dd74d7e3a7d6a3857c3d149614",
+                "reference": "533f832af99e32dd74d7e3a7d6a3857c3d149614",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": "~2.1",
+                "symfony/http-foundation": "~2.1",
+                "symfony/http-kernel": "~2.4"
+            },
+            "replace": {
+                "symfony/security-acl": "self.version",
+                "symfony/security-core": "self.version",
+                "symfony/security-csrf": "self.version",
+                "symfony/security-http": "self.version"
+            },
+            "require-dev": {
+                "doctrine/common": "~2.2",
+                "doctrine/dbal": "~2.2",
+                "ircmaxell/password-compat": "1.0.*",
+                "psr/log": "~1.0",
+                "symfony/expression-language": "~2.4",
+                "symfony/routing": "~2.2",
+                "symfony/validator": "~2.2,<2.5.0"
+            },
+            "suggest": {
+                "doctrine/dbal": "For using the built-in ACL implementation",
+                "ircmaxell/password-compat": "For using the BCrypt password encoder in PHP <5.5",
+                "symfony/class-loader": "For using the ACL generateSql script",
+                "symfony/expression-language": "For using the expression voter",
+                "symfony/finder": "For using the ACL generateSql script",
+                "symfony/routing": "For using the HttpUtils class to create sub-requests, redirect the user, and match URLs",
+                "symfony/validator": "For using the user password constraint"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Security\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Security Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-10-24 05:49:22"
+        },
+        {
+            "name": "texthtml/oauth2-provider",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/texthtml/oauth2-provider.git",
+                "reference": "8c4307d865596d83b160dc143f2543f839e4d05b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/texthtml/oauth2-provider/zipball/8c4307d865596d83b160dc143f2543f839e4d05b",
+                "reference": "8c4307d865596d83b160dc143f2543f839e4d05b",
+                "shasum": ""
+            },
+            "require": {
+                "bshaffer/oauth2-server-httpfoundation-bridge": "~1.0",
+                "bshaffer/oauth2-server-php": "~1.5",
+                "symfony/security": "~2.5"
+            },
+            "require-dev": {
+                "php-vfs/php-vfs": "~1.2",
+                "phpspec/phpspec": "~2.0",
+                "pimple/pimple": "~3.0",
+                "silex/silex": "~2.0@dev"
+            },
+            "suggest": {
+                "silex/silex": "Provide a light framework to build PHP applications"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TH\\OAuth2\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathieu Rochette",
+                    "email": "mathieu@rochette.cc"
+                }
+            ],
+            "description": "OAuth2 provider for the Symfony Security component",
+            "time": "2014-12-21 22:50:43"
         }
     ],
     "packages-dev": [
@@ -2579,16 +2794,16 @@
         },
         {
             "name": "texthtml/whoops-silex",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/texthtml/whoops-silex.git",
-                "reference": "b74edb8fca556ab7404c0b92adbbef1b350db23d"
+                "reference": "ba3460c477ae2556aa332d8b9bd66c315816901b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/texthtml/whoops-silex/zipball/b74edb8fca556ab7404c0b92adbbef1b350db23d",
-                "reference": "b74edb8fca556ab7404c0b92adbbef1b350db23d",
+                "url": "https://api.github.com/repos/texthtml/whoops-silex/zipball/ba3460c477ae2556aa332d8b9bd66c315816901b",
+                "reference": "ba3460c477ae2556aa332d8b9bd66c315816901b",
                 "shasum": ""
             },
             "require": {
@@ -2619,7 +2834,7 @@
                 "silex",
                 "whoops"
             ],
-            "time": "2014-11-07 12:13:57"
+            "time": "2014-11-11 23:17:59"
         }
     ],
     "aliases": [],
@@ -2628,6 +2843,7 @@
         "silex/silex": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.4.0"
     },

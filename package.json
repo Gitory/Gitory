@@ -3,12 +3,10 @@
   "version": "0.1.0",
   "description": "Gitory",
   "main": "js/index.js",
-  "dependencies": {
-    "angular-restmod": "git://github.com/mpeck/angular-restmod#add-name-and-version-to-packagejson"
-  },
   "devDependencies": {
     "angular": "~1.3.0",
     "angular-mocks": "~1.3.0",
+    "angular-restmod": "git://github.com/platanus/angular-restmod",
     "browserify": "^5.10.1",
     "chai": "^1.9.1",
     "chai-as-promised": "^4.1.1",

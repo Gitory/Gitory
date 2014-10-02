@@ -5,7 +5,8 @@ Feature: Repositories basic API
 
     Background:
         Given there is a repository named "gallifrey"
-          And there is a repository named "the-doctor"
+          And there is a repository named "the-tardis"
+          And requests are made on behalf of "The Doctor"
 
     Scenario: List repositories
          When I make a "get" request to "/repositories"
@@ -13,7 +14,7 @@ Feature: Repositories basic API
             """
             [
                 {"identifier": "gallifrey"},
-                {"identifier": "the-doctor"}
+                {"identifier": "the-tardis"}
             ]
             """
 
