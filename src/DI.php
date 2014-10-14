@@ -45,7 +45,7 @@ trait DI
             'monolog.logfile' => $config['log'][$interface],
         ]);
 
-        $this['monolog'] = $this->extend('monolog', function ($monolog) use ($interface) {
+        $this->extend('monolog', function ($monolog) use ($interface) {
             $monolog->pushProcessor(new PsrLogMessageProcessor());
 
             if($interface === 'cli') {
@@ -60,7 +60,7 @@ trait DI
         };
 
         $this['repository.manager'] = function ($c) {
-            return new DoctrineRepositoryManager($c['doctrine'], $c['monolog']);
+            return new DoctrineRepositoryManager($c['doctrine'], $c['logger']);
         };
 
         $this['repository.hosting'] = function () use ($config) {
