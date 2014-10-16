@@ -27,42 +27,10 @@ class ApiContext implements SnippetAcceptingContext
     const ADDRESS = 'localhost:2025';
 
     /**
-     * PHP Server process
-     * @var Symfony\Component\Process\Process
-     */
-    private static $phpProcess;
-
-    /**
      * Last response
      * @var GuzzleHttp\Message\Response
      */
     private $response;
-
-    /**
-     * @BeforeSuite
-     */
-    public static function startServer()
-    {
-        $finder  = new PhpExecutableFinder;
-        $php     = $finder->find();
-        $router  = __DIR__.'/../../api/test.php';
-        $builder = new ProcessBuilder(['exec', $php, '-S', self::ADDRESS, $router]);
-        $builder->inheritEnvironmentVariables(true);
-
-        self::$phpProcess = $builder->getProcess();
-        self::$phpProcess->setTty(true);
-        self::$phpProcess->start();
-
-        sleep(2);
-    }
-
-    /**
-     * @AfterSuite
-     */
-    public static function stopServer()
-    {
-        self::$phpProcess->stop();
-    }
 
     /**
      * Initializes context.
