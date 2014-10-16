@@ -1,8 +1,9 @@
 (function() {
 	'use strict';
 
-	var angular = require('angular');
-	require('npm-angular-resource')(window, angular);
+	require('angular');
+	var angular = window.angular;
+	require('angular-resource');
 	var repositoryFactory = require('./entities/repository');
 
 	module.exports = {

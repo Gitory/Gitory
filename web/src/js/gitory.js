@@ -1,7 +1,8 @@
 (function() {
 	'use strict';
 
-	var angular     = require('angular');
+	require('angular');
+	var angular = window.angular;
 	var entities    = require('./entities');
 	var controllers = require('./controllers');
 	if (process.env.ENV === 'test') {
