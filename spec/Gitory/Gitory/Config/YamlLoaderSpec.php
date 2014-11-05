@@ -54,15 +54,37 @@ YAML
         )->url();
 
         $resource = $this->fileSystem->createFile('/config.yml', <<<YAML
-debug: false
-type: email
 imports:
     - import.yml
+debug: false
+type: email
 YAML
         )->url();
 
         $this->fileLocator->locate('import.yml', dirname($importedResource), false)->willReturn($importedResource);
-        $this->load($resource)->shouldLoadConfig(['debug' => false, 'type' => 'email', 'database' => 'mysql'], 2);
+        $this->load($resource)->shouldLoadConfig(['debug' => false, 'database' => 'mysql', 'type' => 'email'], 2);
+    }
+
+    public function it_loads_merge_imported_files()
+    {
+
+        $importedResource = $this->fileSystem->createFile('/import.yml', <<<YAML
+database:
+    host: localhost
+    port: 4567
+YAML
+        )->url();
+
+        $resource = $this->fileSystem->createFile('/config.yml', <<<YAML
+imports:
+    - import.yml
+database:
+    host: db-master
+YAML
+        )->url();
+
+        $this->fileLocator->locate('import.yml', dirname($importedResource), false)->willReturn($importedResource);
+        $this->load($resource)->shouldLoadConfig(['database' => ['host' => 'db-master', 'port' => 4567]], 2);
     }
 
     public function getMatchers()
@@ -70,6 +92,7 @@ YAML
         return [
             'loadConfig' => function ($subject, $config, $resourceCount) {
                 list($subjectConfig, $subjectResources) = $subject;
+
 
                 if(count($subjectResources) !== $resourceCount) {
                     return false;
