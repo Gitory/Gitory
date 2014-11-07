@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "51a4ea8408e96716b223862093d49842",
+    "hash": "52e14bbf91466bd6b744be8caab6071f",
     "packages": [
         {
             "name": "cypresslab/gitelephant",
@@ -1016,12 +1016,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex.git",
-                "reference": "4ad14ef0513a91fcd44ed3d7b014c7ec6e4bf488"
+                "reference": "5775fdb0be4338b1b9a57ba43af112d488d65bb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex/zipball/4ad14ef0513a91fcd44ed3d7b014c7ec6e4bf488",
-                "reference": "4ad14ef0513a91fcd44ed3d7b014c7ec6e4bf488",
+                "url": "https://api.github.com/repos/silexphp/Silex/zipball/5775fdb0be4338b1b9a57ba43af112d488d65bb6",
+                "reference": "5775fdb0be4338b1b9a57ba43af112d488d65bb6",
                 "shasum": ""
             },
             "require": {
@@ -1045,7 +1045,6 @@
                 "symfony/config": ">=2.4,<2.6-dev",
                 "symfony/css-selector": ">=2.4,<2.6-dev",
                 "symfony/debug": ">=2.4,<2.6-dev",
-                "symfony/doctrine-bridge": ">=2.4,<2.6-dev",
                 "symfony/dom-crawler": ">=2.4,<2.6-dev",
                 "symfony/finder": ">=2.4,<2.6-dev",
                 "symfony/form": ">=2.4,<2.6-dev",
@@ -1096,7 +1095,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2014-09-26 09:33:58"
+            "time": "2014-08-27 13:17:06"
         },
         {
             "name": "symfony/config",
@@ -1882,6 +1881,64 @@
             "time": "2014-08-25 15:09:25"
         },
         {
+            "name": "filp/whoops",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "a85fab9a98f1f9b8ebcdbe71733f0d910e5b9adf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/a85fab9a98f1f9b8ebcdbe71733f0d910e5b9adf",
+                "reference": "a85fab9a98f1f9b8ebcdbe71733f0d910e5b9adf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Whoops": "src/"
+                },
+                "classmap": [
+                    "src/deprecated"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://github.com/filp/whoops",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "silex-provider",
+                "whoops",
+                "zf2"
+            ],
+            "time": "2014-10-26 09:05:09"
+        },
+        {
             "name": "guzzlehttp/guzzle",
             "version": "4.2.2",
             "source": {
@@ -2473,6 +2530,96 @@
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
             "time": "2014-09-22 09:14:18"
+        },
+        {
+            "name": "texthtml/whoops-pimple",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/texthtml/whoops-pimple.git",
+                "reference": "a36a35de810a5369d931600abe477f98f2d58c49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/texthtml/whoops-pimple/zipball/a36a35de810a5369d931600abe477f98f2d58c49",
+                "reference": "a36a35de810a5369d931600abe477f98f2d58c49",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "~1.1",
+                "pimple/pimple": "~3.0",
+                "symfony/http-kernel": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WhoopsPimple\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mathieu Rochette",
+                    "email": "mathieu@rochette.cc",
+                    "homepage": "https://mathieu.rochette.cc"
+                }
+            ],
+            "description": "Integrates the Whoops library into Pimple",
+            "keywords": [
+                "error",
+                "exception",
+                "pimple",
+                "silex",
+                "whoops"
+            ],
+            "time": "2014-11-06 21:22:08"
+        },
+        {
+            "name": "texthtml/whoops-silex",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/texthtml/whoops-silex.git",
+                "reference": "b74edb8fca556ab7404c0b92adbbef1b350db23d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/texthtml/whoops-silex/zipball/b74edb8fca556ab7404c0b92adbbef1b350db23d",
+                "reference": "b74edb8fca556ab7404c0b92adbbef1b350db23d",
+                "shasum": ""
+            },
+            "require": {
+                "silex/silex": "~2.0@dev",
+                "texthtml/whoops-pimple": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WhoopsSilex\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Mathieu Rochette",
+                    "email": "mathieu@rochette.cc",
+                    "homepage": "https://mathieu.rochette.cc"
+                }
+            ],
+            "description": "Integrates the Whoops library into Silex",
+            "keywords": [
+                "error",
+                "exception",
+                "silex",
+                "whoops"
+            ],
+            "time": "2014-11-07 12:13:57"
         }
     ],
     "aliases": [],
