@@ -5,3 +5,4 @@
 /node_modules/
 /web/public/
 /web/tests/e2e-config.js
+/config/config_my.yml

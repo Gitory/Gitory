@@ -1,2 +1,4 @@
 imports:
     - config.yml
+imports_after_if_exists:
+    - config_my.yml
