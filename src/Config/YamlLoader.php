@@ -17,8 +17,8 @@ class YamlLoader extends FileLoader
         if (isset($parsed['imports'])) {
             foreach ($parsed['imports'] as $file) {
                 list($subConfig, $subResources) = $this->import($file);
-                $parsed += $subConfig;
-                $resources = array_merge($subResources, $resources);
+                $parsed = array_replace_recursive($subConfig, $parsed);
+                $resources = array_merge_recursive($subResources, $resources);
             }
 
             unset($parsed['imports']);
