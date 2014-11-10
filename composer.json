@@ -15,8 +15,7 @@
             "homepage": "https://github.com/MrJuliuss"
         }
     ],
-    "require":
-    {
+    "require": {
         "php": ">=5.4.0",
         "doctrine/orm": "~2.4",
         "silex/silex": "~2.0@dev",
@@ -28,14 +27,14 @@
         "monolog/monolog": "~1.0",
         "psr/log": "~1.0"
     },
-    "require-dev":
-    {
+    "require-dev": {
+        "ext-pdo_sqlite": "*",
         "behat/behat": "~3.0",
         "phpspec/phpspec": "~2.0",
         "guzzlehttp/guzzle": "~4.0",
         "symfony/process": "~2.5",
         "php-vfs/php-vfs": "~1.1",
-        "ext-pdo_sqlite": "*"
+        "texthtml/whoops-silex": "~1.0"
     },
     "autoload": {
         "psr-4": {

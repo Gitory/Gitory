@@ -7,7 +7,10 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderResolver;
 use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\ConfigCache;
+use WhoopsSilex\WhoopsServiceProvider;
+use Whoops\Handler\JsonResponseHandler;
 use Gitory\Gitory\Config\YamlLoader;
+use Whoops\Handler\PrettyPageHandler;
 
 class Application extends SilexApplication
 {
@@ -17,9 +20,30 @@ class Application extends SilexApplication
     {
         parent::__construct(['debug' => $debug]);
 
-        $config = $this->config($env);
+        if ($debug) {
+            $this->register(new WhoopsServiceProvider);
+            if (
+                array_key_exists('HTTP_ACCEPT', $_SERVER) &&
+                strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false
+            ) {
+                $this['whoops']->pushHandler(new JsonResponseHandler);
+            }
+        }
 
         $this['env'] = $env;
+
+        $this->init($this->config($env), $interface);
+    }
+
+    /**
+     * @param  Array  $config
+     * @param  string $interface
+     */
+    private function init(Array $config, $interface)
+    {
+        if (isset($config['whoops']['editor']) && $this['whoops.error_page_handler'] instanceof PrettyPageHandler) {
+            $this['whoops.error_page_handler']->setEditor($config['whoops']['editor']);
+        }
 
         $this->initDI($config['gitory'], $interface);
 
