@@ -46,7 +46,6 @@ class YamlLoaderSpec extends ObjectBehavior
 
     public function it_loads_imported_yaml_files()
     {
-
         $importedResource = $this->fileSystem->createFile('/import.yml', <<<YAML
 debug: true
 database: mysql
@@ -85,6 +84,36 @@ YAML
 
         $this->fileLocator->locate('import.yml', dirname($importedResource), false)->willReturn($importedResource);
         $this->load($resource)->shouldLoadConfig(['database' => ['host' => 'db-master', 'port' => 4567]], 2);
+    }
+
+    public function it_loads_optional_imported_yaml_files_if_absent()
+    {
+        $importedResource = $this->fileSystem->createFile('/import.yml', <<<YAML
+debug: true
+YAML
+        )->url();
+
+        $resource = $this->fileSystem->createFile('/config.yml', <<<YAML
+debug: false
+imports_after_if_exists:
+    - import.yml
+YAML
+        )->url();
+
+        $this->fileLocator->locate('import.yml', dirname($importedResource), false)->willReturn($importedResource);
+        $this->load($resource)->shouldLoadConfig(['debug' => true], 2);
+    }
+
+    public function it_ignores_optional_imported_yaml_files_if_absent()
+    {
+        $resource = $this->fileSystem->createFile('/config.yml', <<<YAML
+debug: false
+imports_after_if_exists:
+    - import.yml
+YAML
+        )->url();
+
+        $this->load($resource)->shouldLoadConfig(['debug' => false], 1);
     }
 
     public function getMatchers()
