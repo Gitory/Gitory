@@ -1,1 +1,1 @@
-require('./gitory').start();
+require('./gitory');

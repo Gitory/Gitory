@@ -13,7 +13,7 @@ trait Routes
 
         $this->get('/repositories', 'repository.controller:listAction');
 
-        $this->post('/repository/{identifier}', 'repository.controller:createAction');
+        $this->put('/repositories/{identifier}', 'repository.controller:createAction');
 
         $this->match('{apiEndpoints}', 'api.controller:optionsAction')
             ->method('OPTIONS')
@@ -35,14 +35,14 @@ trait Routes
     abstract public function get($pattern, $to = null);
 
     /**
-     * Maps a POST request to a callable.
+     * Maps a PUT request to a callable.
      *
      * @param string $pattern Matched route pattern
      * @param string $to      Callback that returns the response when matched
      *
      * @return Controller
      */
-    abstract public function post($pattern, $to = null);
+    abstract public function put($pattern, $to = null);
 
     /**
      * Maps a OPTION request to a callable.

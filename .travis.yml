@@ -19,8 +19,7 @@ script:
   - if [ $(phpenv version-name) != "5.3" ]; then vendor/bin/phpspec run -f pretty; fi
   - if [ $(phpenv version-name) != "5.3" ]; then php -S localhost:2025 api/test.php & sleep 1; fi
   - if [ $(phpenv version-name) != "5.3" ]; then vendor/bin/behat; fi
-  - if [ $(phpenv version-name) = "5.3" ]; then gulp test:js:specs; fi
-  - if [ $(phpenv version-name) = "5.3" ]; then gulp test:js:e2e; fi
+  - if [ $(phpenv version-name) = "5.3" ]; then gulp test:js; fi
 
 notifications:
   webhooks:

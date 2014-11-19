@@ -18,7 +18,7 @@ Feature: Repositories basic API
             """
 
     Scenario: Add a repository with an existing identifier
-         When I make a "post" request to "/repository/gallifrey"
+         When I make a "put" request to "/repositories/gallifrey"
          Then the response status code should be 409
          Then the response should be
             """
@@ -31,7 +31,7 @@ Feature: Repositories basic API
             """
 
     Scenario: Add a repository
-         When I make a "post" request to "/repository/rose"
+         When I make a "put" request to "/repositories/rose"
          Then the response status code should be 201
          Then the response should be
             """

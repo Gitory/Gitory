@@ -1,25 +1,13 @@
 (function() {
 	'use strict';
 
-	require('angular');
-	var angular = window.angular;
-	var entities    = require('./entities');
-	var controllers = require('./controllers');
+	var angular = require('./angular');
 	if (process.env.ENV === 'test') {
 		require('angular-mocks');
 	}
 
-	var app = angular.module('gitory', ['gitory.entities']);
-
-	entities.config(process.env.API_BASE_URI.replace(/\/$/, ''));
-
-	angular.forEach(controllers, function(controller) {
-		app.controller(controller.name, controller.constructor);
-	});
-
-	module.exports.start = function() {
-		angular.element().ready(function() {
-			angular.bootstrap(document, [app.name]);
-		});
-	};
+	require('./directives');
+	require('./services').config(process.env.API_BASE_URI.replace(/\/$/, ''));
+	angular.module('gitory', ['gitory.directives']);
+	require('../../tmp/templates.js');
 }) ();
