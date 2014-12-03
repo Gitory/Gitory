@@ -87,7 +87,9 @@ class ApiContext implements SnippetAcceptingContext
     public function theResponseStatusCodeShouldBe($code)
     {
         if($this->response->getStatusCode() !== $code) {
-            throw new Exception('Response code : '.$this->response->getStatusCode().' does not match '.$code);
+            $responseCode = $this->response->getStatusCode();
+            $responseReason = $this->response->getReasonPhrase();
+            throw new Exception('Response code : '.$responseCode.' "'.$responseReason.'" does not match '.$code);
         }
     }
 

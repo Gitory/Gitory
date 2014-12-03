@@ -43,11 +43,12 @@
 	var livereload  = require('gulp-livereload');
 	var connectLr   = require('connect-livereload');
 	var express     = require('express');
-	var PHPRoot     = __dirname + '/api/';
 	var PHPServer   = require('php-built-in-server');
 	var pleeease    = require('gulp-pleeease');
-	var karma       = require('karma').server;
 	var protractor  = require('gulp-protractor');
+	var templates   = require('gulp-angular-templatecache');
+	var minifyHTML  = require('gulp-minify-html');
+	var PHPRoot     = __dirname + '/api/';
 	var debug       = argv.debug;
 	var watch       = argv.watch;
 	var reload      = argv.reload;
@@ -107,7 +108,9 @@
 	});
 
 	gulp.task('build:html', function() {
-		var files = __dirname + '/web/src/index.html';
+		var files = [
+			__dirname + '/web/src/index.html',
+		];
 
 		if (watch && !this.watchingHTML) {
 			this.watchingHTML = true;
@@ -160,7 +163,27 @@
 		return stream.pipe(livereload());
 	});
 
-	gulp.task('build:js', function() {
+	gulp.task('build:js:templates', function() {
+		var files = [
+			__dirname + '/web/src/views/**/*.html',
+		];
+
+		if (watch && !this.watchingTemplates) {
+			this.watchingTemplates = true;
+			gulp.watch(files, ['build:js:templates']);
+		}
+
+		return gulp.src(files)
+			.pipe(minifyHTML({
+				quotes: true
+			}))
+			.pipe(templates('templates.js', {
+				module: 'gitory'
+			}))
+			.pipe(gulp.dest(__dirname + '/web/tmp/'));
+	});
+
+	gulp.task('build:js:app', function() {
 		var args = {
 			standalone: 'gitory',
 			basedir: __dirname,
@@ -206,115 +229,14 @@
 		return rebundle();
 	});
 
+	gulp.task('build:js', ['build:js:templates', 'build:js:app']);
+
 	gulp.on('err', function (err) {
 		exitCode = 1;
 	});
 
 	process.on('exit', function () {
 		process.exit(exitCode);
-	});
-
-	gulp.task('karma', function(done) {
-		var jsFiles = __dirname + '/web/tests/spec/**/*.js';
-		var files = [jsFiles];
-		var preprocessors = {};
-		preprocessors[jsFiles] = ['browserify'];
-
-		var browsers = argv.browser;
-
-		if (!(browsers instanceof Array)) {
-			browsers = [debug && browsers === 'PhantomJS' ? 'Firefox' : browsers];
-		}
-
-		var reporters = [debug ? 'progress' : 'dots'];
-
-		if (argv.notifyLogLevel) {
-			reporters.push('growl-notifications');
-		}
-
-		var config = {
-			singleRun: !watch && !debug,
-			autoWatch: watch,
-			basePath: '',
-			frameworks: ['mocha', 'chai', 'browserify'],
-			files: files,
-			preprocessors: preprocessors,
-			reporters: reporters,
-			port: 9876,
-			colors: true,
-			browsers: browsers,
-			browserify: {
-				debug: debug,
-				prebundle: function(bundle) {
-					bundle.transform(envify({
-						API_BASE_URI: 'http://' + argv.host + ':' + argv.apiPort + '/',
-						ENV: env,
-						DEBUG: argv.debug
-					}));
-				}
-			},
-			tags: []
-		};
-
-		if (argv.browser === 'SauceLabs') {
-			var customLaunchers = {
-				sl_win8_1_chrome: {
-					base: 'SauceLabs',
-					browserName: 'chrome',
-					platform: 'Windows 8.1',
-					version: '35'
-				},
-				sl_win8_1_firefox: {
-					base: 'SauceLabs',
-					browserName: 'firefox',
-					platform: 'Windows 8.1'
-				},
-				sl_win7_chrome: {
-					base: 'SauceLabs',
-					browserName: 'chrome',
-					platform: 'Windows 7',
-					version: '35'
-				},
-				sl_win7_firefox: {
-					base: 'SauceLabs',
-					browserName: 'firefox',
-					platform: 'Windows 7'
-				},
-				sl_linux_chrome: {
-					base: 'SauceLabs',
-					browserName: 'chrome',
-					platform: 'Linux',
-					version: '35'
-				},
-				sl_linux_firefox: {
-					base: 'SauceLabs',
-					browserName: 'firefox',
-					platform: 'Linux'
-				}
-			};
-
-			config.sauceLabs = {
-				testName: 'Gitory Tests'
-			};
-
-			config.customLaunchers = customLaunchers;
-
-			config.browsers = Object.keys(customLaunchers);
-
-			config.browserNoActivityTimeout = 60000;
-
-			config.reporters.push('saucelabs');
-		}
-
-		if (process.env.TRAVIS_BRANCH) {
-			config.tags.push('branch:' + process.env.TRAVIS_BRANCH);
-		}
-
-		if (process.env.TRAVIS_PULL_REQUEST) {
-			config.tags.push('pull-request:' + process.env.TRAVIS_PULL_REQUEST);
-		}
-
-		karma.start(config, done);
 	});
 
 	gulp.task('webdriver:update', protractor.webdriver_update);
@@ -324,7 +246,7 @@
 
 		if (watch && !this.watchingE2E) {
 			this.watchingE2E = true;
-			gulp.watch([__dirname + '/web/public/test/*', __dirname + '/web/pages/*', files], ['protractor']);
+			gulp.watch([__dirname + '/web/public/test/**', __dirname + '/web/pages/**', files], ['protractor']);
 		}
 
 		var browsers = argv.browser;
@@ -365,7 +287,7 @@
 			}));
 	});
 
-	gulp.task('test:js:e2e', ['set:test-env', 'build', 'server:static:start'], function() {
+	gulp.task('test:js', ['set:test-env', 'build', 'server:static:start'], function() {
 		var cb = function() {
 			if (!watch) {
 				gulp.start('servers:stop', function() {});
@@ -374,8 +296,6 @@
 
 		gulp.start('protractor', cb);
 	});
-
-	gulp.task('test:js:specs', ['set:test-env', 'karma']);
 
 
 	gulp.task('build', ['build:html', 'build:js', 'build:css']);

@@ -4,5 +4,6 @@
 /vendor/
 /node_modules/
 /web/public/
+/web/tmp/
 /web/tests/e2e-config.js
 /config/config_my.yml
