@@ -81,7 +81,7 @@ class DoctrineRepositoryManager implements RepositoryManager
      */
     private function getManager()
     {
-        return $this->registry->getManagerForClass(DoctrineRepositoryManager::ENTITY_CLASS);
+        return $this->registry->getManagerForClass(self::ENTITY_CLASS);
     }
 
     /**

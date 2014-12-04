@@ -2,17 +2,30 @@
 
 namespace Gitory\Gitory\Controllers;
 
-use Gitory\Gitory\Entities\Repository;
 use Gitory\Gitory\Managers\RepositoryManager;
 use Gitory\Gitory\Exceptions\ExistingRepositoryIdentifierException;
 use Gitory\Gitory\API\Response;
+use Gitory\Gitory\UseCases\RepositoryCreation;
 
 class RepositoryController
 {
+    /**
+     * @var RepositoryCreation
+     */
+    private $repositoryCreation;
+
+    /**
+     * @var RepositoryManager
+     */
     private $repositoryManager;
 
-    public function __construct(RepositoryManager $repositoryManager)
+    /**
+     * @param RepositoryCreation $repositoryCreation
+     * @param RepositoryManager  $repositoryManager
+     */
+    public function __construct(RepositoryCreation $repositoryCreation, RepositoryManager $repositoryManager)
     {
+        $this->repositoryCreation = $repositoryCreation;
         $this->repositoryManager = $repositoryManager;
     }
 
@@ -27,9 +40,12 @@ class RepositoryController
 
     public function createAction($identifier)
     {
-        $repository = new Repository($identifier);
         try {
-            $repository = $this->repositoryManager->save($repository);
+            $repository = $this->repositoryCreation->exec($identifier);
+
+            return new Response([
+                'identifier' => $repository->identifier()
+            ], Response::HTTP_CREATED);
         } catch(ExistingRepositoryIdentifierException $e) {
             return new Response([
                 'id' => 'existing-repository-identifier-exception',
@@ -37,8 +53,5 @@ class RepositoryController
             ], Response::HTTP_CONFLICT);
         }
 
-        return new Response([
-            'identifier' => $repository->identifier()
-        ], Response::HTTP_CREATED);
     }
 }

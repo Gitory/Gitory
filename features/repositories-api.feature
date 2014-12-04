@@ -20,7 +20,7 @@ Feature: Repositories basic API
     Scenario: Add a repository with an existing identifier
          When I make a "put" request to "/repositories/gallifrey"
          Then the response status code should be 409
-         Then the response should be
+          And the response should be
             """
             {
                 "error": {
@@ -33,7 +33,13 @@ Feature: Repositories basic API
     Scenario: Add a repository
          When I make a "put" request to "/repositories/rose"
          Then the response status code should be 201
-         Then the response should be
+          And there is a "pending" "repository:creation" job with payload
+            """
+            {
+                "identifier": "rose"
+            }
+            """
+          And the response should be
             """
             {
                 "identifier": "rose"

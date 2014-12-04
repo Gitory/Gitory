@@ -2,8 +2,9 @@
 
 namespace Gitory\Gitory\Entities;
 
-
-/** @Entity */
+/**
+ * @Entity
+ */
 class Repository
 {
 

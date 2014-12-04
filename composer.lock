@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "52e14bbf91466bd6b744be8caab6071f",
+    "hash": "8f67a6ef66b03b04b46df52e8671f19a",
     "packages": [
         {
             "name": "cypresslab/gitelephant",
@@ -651,6 +651,86 @@
             "time": "2014-09-22 21:58:51"
         },
         {
+            "name": "gedmo/doctrine-extensions",
+            "version": "v2.3.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
+                "reference": "35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54",
+                "reference": "35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": ">=2.2,<2.5-dev",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "doctrine/common": ">=2.4.0-RC3",
+                "doctrine/dbal": ">=2.4.0-RC1",
+                "doctrine/mongodb": ">=1.0.3",
+                "doctrine/mongodb-odm": ">=1.0.0-BETA9",
+                "doctrine/orm": ">=2.4.0-RC1",
+                "symfony/yaml": "2.3.1"
+            },
+            "suggest": {
+                "doctrine/dbal": ">=2.3.2",
+                "doctrine/mongodb": ">=1.0.1",
+                "doctrine/mongodb-odm": ">=1.0.0-BETA7",
+                "doctrine/orm": ">=2.3.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Gedmo\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Buchmann",
+                    "email": "david@liip.ch"
+                },
+                {
+                    "name": "Gediminas Morkevicius",
+                    "email": "gediminas.morkevicius@gmail.com"
+                },
+                {
+                    "name": "Gustavo Falco",
+                    "email": "comfortablynumb84@gmail.com"
+                }
+            ],
+            "description": "Doctrine2 behavioral extensions",
+            "homepage": "http://gediminasm.org/",
+            "keywords": [
+                "Blameable",
+                "behaviors",
+                "doctrine2",
+                "extensions",
+                "gedmo",
+                "loggable",
+                "nestedset",
+                "sluggable",
+                "sortable",
+                "timestampable",
+                "translatable",
+                "tree",
+                "uploadable"
+            ],
+            "time": "2014-01-12 16:34:06"
+        },
+        {
             "name": "gitory/pimple-cli",
             "version": "v1.0.0",
             "source": {
@@ -1016,12 +1096,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex.git",
-                "reference": "5775fdb0be4338b1b9a57ba43af112d488d65bb6"
+                "reference": "bf3df803381a04248e783f7c7cf92ec46c3adb50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex/zipball/5775fdb0be4338b1b9a57ba43af112d488d65bb6",
-                "reference": "5775fdb0be4338b1b9a57ba43af112d488d65bb6",
+                "url": "https://api.github.com/repos/silexphp/Silex/zipball/bf3df803381a04248e783f7c7cf92ec46c3adb50",
+                "reference": "bf3df803381a04248e783f7c7cf92ec46c3adb50",
                 "shasum": ""
             },
             "require": {
@@ -1045,6 +1125,7 @@
                 "symfony/config": ">=2.4,<2.6-dev",
                 "symfony/css-selector": ">=2.4,<2.6-dev",
                 "symfony/debug": ">=2.4,<2.6-dev",
+                "symfony/doctrine-bridge": ">=2.4,<2.6-dev",
                 "symfony/dom-crawler": ">=2.4,<2.6-dev",
                 "symfony/finder": ">=2.4,<2.6-dev",
                 "symfony/form": ">=2.4,<2.6-dev",
@@ -1095,7 +1176,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2014-08-27 13:17:06"
+            "time": "2014-09-22 15:10:38"
         },
         {
             "name": "symfony/config",
@@ -1644,6 +1725,46 @@
                 "url"
             ],
             "time": "2014-09-22 15:28:36"
+        },
+        {
+            "name": "texthtml/php-lock",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/texthtml/php-lock.git",
+                "reference": "9dec141b166260ba6b78a511f1ad582339a6d058"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/texthtml/php-lock/zipball/9dec141b166260ba6b78a511f1ad582339a6d058",
+                "reference": "9dec141b166260ba6b78a511f1ad582339a6d058",
+                "shasum": ""
+            },
+            "require": {
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "php-vfs/php-vfs": "~1.2@dev",
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TH\\Lock\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "aGPLv3"
+            ],
+            "authors": [
+                {
+                    "name": "Mathieu Rochette",
+                    "email": "mathieu@rochette.cc"
+                }
+            ],
+            "description": "ressource lock",
+            "time": "2014-09-16 09:30:42"
         }
     ],
     "packages-dev": [

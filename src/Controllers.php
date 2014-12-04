@@ -11,7 +11,7 @@ trait Controllers
     public function initControllers()
     {
         $this['repository.controller'] = function (Container $c) {
-            return new RepositoryController($c['repository.manager']);
+            return new RepositoryController($c['repository.creation.usecase'], $c['repository.manager']);
         };
 
         $this['api.controller'] = function () {
