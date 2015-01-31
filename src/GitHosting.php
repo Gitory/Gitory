@@ -6,7 +6,6 @@ interface GitHosting
 {
     /**
      * @param string $repositoriesFolderPath
-     * @return void
      */
     public function __construct($repositoriesFolderPath);
 
