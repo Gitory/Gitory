@@ -25,7 +25,8 @@
         "gitory/pimple-cli": "~1.0",
         "symfony/config": "~2.5",
         "monolog/monolog": "~1.0",
-        "psr/log": "~1.0"
+        "psr/log": "~1.0",
+        "texthtml/oauth2-provider": "~1.0"
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",

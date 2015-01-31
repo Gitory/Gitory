@@ -5,7 +5,6 @@ Feature: Cross Origin API
 
     Scenario: List repositories
          When I make a "options" request to "/repositories"
-         Then the response status code should be 200
-          And the response header "Access-Control-Allow-Origin" should be "*"
+         Then the response header "Access-Control-Allow-Origin" should be "*"
           And the response header "Access-Control-Allow-Methods" should be "GET, DELETE, POST, PUT"
-          And the response header "Access-Control-Allow-Headers" should be "Content-Type"
+          And the response header "Access-Control-Allow-Headers" should be "Authorization, Content-Type"

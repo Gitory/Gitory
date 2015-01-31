@@ -1,7 +1,14 @@
 (function() {
 	'use strict';
 
-	module.exports = ['restmod', function(restmod) {
+	var repositories = function(restmod) {
 		return restmod.model('/repositories');
-	}];
+	};
+
+	repositories.$inject = ['restmod'];
+
+	module.exports = {
+		name: 'Repositories',
+		provider: repositories
+	};
 }) ();

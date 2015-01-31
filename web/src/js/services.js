@@ -2,7 +2,12 @@
 	'use strict';
 
 	var angular = require('./angular');
-	var repositoriesFactory = require('./services/repositories');
+	var servicesDefinitions = [
+		require('./services/authorization'),
+		require('./services/authorization/interceptor'),
+		// require('./services/session'),
+		require('./services/repositories')
+	];
 	require('./restmod');
 
 	module.exports = {
@@ -18,7 +23,17 @@
 				});
 			}]);
 
-			services.factory('Repositories', repositoriesFactory);
+			for (var i = 0; i < servicesDefinitions.length; i++) {
+				var serviceDefinition = servicesDefinitions[i];
+
+				if (serviceDefinition.config !== undefined) {
+					services.config(serviceDefinition.config);
+				}
+
+				if (serviceDefinition.provider !== undefined) {
+					services.factory(serviceDefinition.name, serviceDefinition.provider);
+				}
+			}
 		}
 	};
 }) ();

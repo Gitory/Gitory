@@ -2,3 +2,9 @@ imports:
     - config.yml
 imports_after_if_exists:
     - config_my.yml
+gitory:
+    api:
+        clients:
+            NICE_DEV_CLIENT:
+                name: Nice Dev Client
+                redirect_uri: http://localhost:4000/oauth2_callback

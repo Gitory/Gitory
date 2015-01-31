@@ -8,11 +8,17 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 
 		<link rel="stylesheet" type="text/css" href="/gitory.css"/>
-
+		<base href="/">
 		<script src="/gitory.js"></script>
 	</head>
 	<body>
 		<h1>Gitory</h1>
+
+		<gitory:o-auth2-login-button
+			client-id="NICE_DEV_CLIENT"
+			response-type="token"
+			callback-path="/oauth2_callback"
+		></gitory:o-auth2-login-button>
 
 		<gitory:repositories collection-name="repositories"></gitory:repositories>
 

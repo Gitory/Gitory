@@ -1,2 +1,8 @@
 imports:
     - config.yml
+gitory:
+    api:
+        clients:
+            NICE_TEST_CLIENT:
+                name: Nice Test Client
+                redirect_uri: http://nice.test.client/oauth2_callback

@@ -6,16 +6,11 @@ use Gitory\Gitory\Managers\RepositoryManager;
 use Gitory\Gitory\Entities\Repository;
 use Gitory\Gitory\Exceptions\ExistingRepositoryIdentifierException;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Psr\Log\LoggerInterface;
 
 class DoctrineRepositoryManager implements RepositoryManager
 {
-    /**
-     * Doctrine registry
-     * @var \Doctrine\Common\Persistence\ManagerRegistry
-     */
-    private $registry;
+    use DoctrineRepository;
 
     /**
      * @var LoggerInterface
@@ -73,23 +68,5 @@ class DoctrineRepositoryManager implements RepositoryManager
         $this->logger->notice('Repository "{identifier}" has been created in database', ['identifier' => $identifier]);
 
         return $repository;
-    }
-
-    /**
-     * Get entity manager
-     * @return \Doctrine\Common\Persistence\ObjectManager|null entity manager
-     */
-    private function getManager()
-    {
-        return $this->registry->getManagerForClass(DoctrineRepositoryManager::ENTITY_CLASS);
-    }
-
-    /**
-     * Get doctrine repository
-     * @return Doctrine\Common\Persistence\ObjectRepository
-     */
-    private function getRepository()
-    {
-        return $this->getManager()->getRepository(self::ENTITY_CLASS);
     }
 }
