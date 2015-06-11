@@ -10,7 +10,7 @@ trait DoctrineRepository
 
     public function __construct(ManagerRegistry $registry)
     {
-        return $this->registry = $registry;
+        $this->registry = $registry;
     }
 
     /**
